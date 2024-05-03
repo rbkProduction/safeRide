@@ -1,4 +1,4 @@
-# Alter'Eco
+# Custom Ride
 
 Cette fiction interactive s'est construite dans le cadre du cours [Développement de Jeux Vidéo 2D](https://github.com/ipante/ressources_cours_jeux_video_2D/blob/master/README.md), enseigné par Isaac Pante à l'Université de Lausanne. 
 
@@ -27,27 +27,11 @@ Rebecca.Kneubuehler@unil.ch
 
 ## Contribution
 ### Musiques et sons
-Toutes les musiques et bruits sonores sont issus de la bibliothèque audio de YouTube, accessible via le YouTube Studio. 
+Tous les bruits sonores et les musiques sont issus de la bibliothèque audio de YouTube, accessible via le YouTube Studio, et sont donc libres de droit. 
 
 ### Images
-Toutes les images ont été extraites de [Pexels](https://www.pexels.com/fr-fr/). 
-Les personnages sont issus de [Potat0Master](https://potat0master.itch.io/free-character-sprites-for-visual-novels-sensei-pack).
+Toutes les images ont été extraites de Canva Premium [Canva](https://www.canva.com/), ainsi que de [Freepik](https://fr.freepik.com/).
+Les personnages ont été réalisé gratuitement à l'aide de [Scratch](https://scratch.mit.edu/).
 
-Sprites : 
-[Freepik](https://www.freepik.com/free-vector/phases-plant-growth-infographic_11571808.htm#query=game%20growth%20of%20tree%20sprite&position=5&from_view=search&track=ais) 
-[Freepik](https://www.freepik.com/free-vector/hand-drawn-businessman-character-with-facial-expressions_1062475.htm#query=game%20sprite%20character%20thinking&position=4&from_view=search&track=ais)
-[Freepik](https://www.freepik.com/free-vector/hand-painted-watercolor-nature-background_13723081.htm#query=background%20nature&position=5&from_view=search&track=ais)
-[Freepik](https://www.freepik.com/free-photo/green-park-view_1278319.htm#query=background%20nature&position=9&from_view=search&track=ais)
-[Freepik](https://www.freepik.com/free-photo/green-leaf-texture-leaf-texture-background_26542540.htm#query=background%20nature&position=38&from_view=search&track=ais)
-[Freepik](https://www.freepik.com/premium-photo/smoke-from-factory-pipe-against-dark-overcast-sky_15643630.htm#query=gazcarbonique&position=5&from_view=search&track=ais?log-in=email)
-[Freepik](https://www.freepik.com/free-photo/coffee-bean-black-burlap-sack_1145775.htm#query=coffeeecology&position=7&from_view=search&track=ais)
-[Freepik](https://www.freepik.com/premium-photo/happy-young-guy-walking-outdoors-with-bicycle-chatting-by-mobile-phone_11900808.htm#query=student%20bike&position=10&from_view=search&track=ais)
-[Freepik](https://www.freepik.com/free-photo/full-shot-man-with-laptop-bicycle-outdoors_25990415.htm#query=student%20bike&position=42&from_view=search&track=ais)
-[Freepik](https://www.freepik.com/free-photo/front-view-individual-throwing-leftovers-away_10079644.htm#query=food%20waste&position=42&from_view=search&track=ais)
-[Freepik](https://www.freepik.com/premium-photo/domestic-waste-compost-from-fruits-vegetables-garbage-bag-table-top-view_20767163.htm#query=food%20waste&position=8&from_view=search&track=ais)
-[Freepik](https://www.freepik.com/premium-photo/bulgarian-pepper-box-shelf-supermarket_10951859.htm#query=fruits%20in%20plastic%20wrap%20market&position=29&from_view=search&track=ais)
-[Freepik](https://www.freepik.com/premium-photo/single-use-plastic-waste-issue-fruits-vegetables-plastic-bags_8100955.htm#query=fruits%20in%20plastic%20wrap%20market&position=15&from_view=search&track=ais)
-[Freepik](https://www.freepik.com/free-photo/homepage-concept-with-search-bar_36029335.htm#query=internet%20search&position=13&from_view=search&track=ais)
-[Freepik](https://www.freepik.com/premium-photo/flying-green-turtle-blue_24836072.htm#query=turtle&position=46&from_view=search&track=sph)
-[Freepik](https://www.freepik.com/free-photo/small-bowl-with-olives-leaf_2499131.htm#query=olive%20oils%20wall&position=7&from_view=search&track=ais)
-[Freepik](https://www.freepik.com/premium-photo/recycling-products-concept-organic-cotton-recycling-cloth-zero-waste-materials-environment-care-reuse-renewable-sustainable-lifestyle-recycle-icon-show-tag_32589248.htm#query=textile%20écolo&position=6&from_view=search&track=ais)
+### Sources
+Scene 3 : [Freepik](https://fr.freepik.com/photos-gratuite/concept-magasin-service-velo-velo_13659193.htm#fromView=search&page=1&position=46&uuid=d8cb5e66-87cf-41da-b60a-396f2b92d95c).
