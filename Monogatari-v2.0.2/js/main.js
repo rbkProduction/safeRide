@@ -31,7 +31,21 @@ const { $_ready, $_ } = Monogatari;
 $_ready (() => {
 	// 2. Inside the $_ready function:
 	$_('[data-action="stats"]').click (function() {
-		
+		monogatari.component ('game-screen').template (() => {
+			return `
+				<div data-content="visuals">
+					<div id="tsparticles" data-ui="particles"></div>
+					<div id="background" data-ui="background"></div>
+					<div data-component="modal" data-ui="stats">
+						<label for="statBar"> Dépenses : </label>
+						<progress id="statBar" value="0" max="7500" data-stat="expenses"></progress>
+					</div>
+				</div>
+			`;
+		});
+		monogatari.component('game-screen').template (() => {
+			('[data-stat]').value (monogatari.storage ().expenses)
+		}); 
 	});
 	monogatari.init ('#monogatari').then (() => {
 		// 3. Inside the init function:

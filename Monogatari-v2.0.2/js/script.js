@@ -123,14 +123,18 @@ monogatari.characters ({
 
 // Function to keep track of the expenses througout the choices of the user
 function addExpense(expenses, price){
-	monogatari.storage ().expenses += price;
-	$_('[data-stat="${expenses}"]').value (monogatari.storage ().expenses);
+	expenses += price;
+	monogatari.component ('span').template(() => {
+		('[data-stat="${expenses}"]').value (monogatari.storage ().expenses)
+	});
 	return true;
 };
 
 function substractExpense(expenses, price){
-	monogatari.storage ().expenses -= price;
-	$_('[data-stat="${expenses}"]').value (monogatari.storage ().expenses);
+	expenses -= price;
+	monogatari.component ('span').template(() => {
+		('[data-stat="${expenses}"]').value (monogatari.storage ().expenses)
+	});
 	return true;
 };
 
