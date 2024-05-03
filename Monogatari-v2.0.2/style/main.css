@@ -115,7 +115,7 @@ main-menu{
  * ===========================
 **/
 
-/* Style of the span bar */
+/* Style of the statBar <div>  */
 [data-ui="stats"] {
 	display: inline;
 	position: fixed;
@@ -124,6 +124,13 @@ main-menu{
 	width: 300px;
 	border: 3px slateblue;
 }
+
+/* Style of the statBar */
+[id="statBar"] {
+	width: 1%;
+	height: 15px;
+	background-color: aliceblue;
+};
 
 /* Style of the title */
 h1 {

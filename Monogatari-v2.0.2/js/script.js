@@ -118,27 +118,36 @@ monogatari.characters ({
 	},
 });
 
-// Defining the progess bar that shows the current expenses
+let totalAmountSpent = 0;
+// Function to upload the statBar
+function uploadStatBar() {
+	const statBar = document.getElementById("statBar");
+	const totalAmountSpentSpan = document.getElementById("totalAmountSpent")
+	// Upload the value of the statBar
+	statBar.value = totalAmountSpent
+	// Upload the display of the amount spent
+	totalAmountSpentSpan.textContent = totalAmountSpent;
+	// Upload in the user's storage
+	monogatari.storage ().expenses = totalAmountSpent;
+};
 
-
-// Function to keep track of the expenses througout the choices of the user
-function addExpense(expenses, price){
-	expenses += price;
-	monogatari.component ('span').template(() => {
-		('[data-stat="${expenses}"]').value (monogatari.storage ().expenses)
-	});
+// Function to add an expense
+function addExpense(amount) {
+	// Add the amount of the expense to the total of expenses
+	totalAmountSpent += amount;
+	// Upload the stat bar
+	uploadStatBar();
 	return true;
 };
 
-function substractExpense(expenses, price){
-	expenses -= price;
-	monogatari.component ('span').template(() => {
-		('[data-stat="${expenses}"]').value (monogatari.storage ().expenses)
-	});
+// Function to substract an expense
+function substractExpense(amount) {
+	// Add the amount of the expense to the total of expenses
+	totalAmountSpent -= amount;
+	// Upload the stat bar
+	uploadStatBar();
 	return true;
 };
-
-
 
 monogatari.script ({
 	// The game starts here.
@@ -206,21 +215,21 @@ monogatari.script ({
 				'Cadre en acier': {
 					// https://www.fabrikcycles.ch/products/fabrik-kit-cadre-mei93?variant=39561821519933&currency=CHF&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&srsltid=AfmBOoq0d6fnRjlKMPoXGiiNaLh_ATEf5dDACArVe9CsssnDNtsZgj2BsIU
 					'Text': 'Cadre en acier - CHF 229',
-					'onChosen': function(){addExpense(monogatari.storage ().expenses, 229)},
-					'onRevert': function(){substractExpense(monogatari.storage ().expenses, 229)},
+					'onChosen': function(){addExpenseExpense(229)},
+					'onRevert': function(){substractExpense(229)},
 					'Do': 'jump Scene3',
 				},
 				'Cadre en aluminium': {
 					'Text': 'Cadre en aluminium - CHF 729.99',
-					'onChosen': function(){addExpense(monogatari.storage ().expenses, 729.99)},
-					'onRevert': function(){substractExpense(monogatari.storage ().expenses, 729.99)},
+					'onChosen': function(){addExpense(729.99)},
+					'onRevert': function(){substractExpense(729.99)},
 					'Do': 'jump Scene3',
 				},
 				'Cadre en carbone': {
 					// https://bmc-switzerland.com/fr/collections/road-racing-bikes-teammachine-slr/products/teammachine-slr-frs-bike-frames-bmc-23-10611-010
 					'Text': 'Cadre en carbone - CHF 2\'299',
-					'onChosen': function(){addExpense(monogatari.storage ().expenses, 2299)},
-					'onRevert': function(){substractExpense(monogatari.storage ().expenses, 2299)},
+					'onChosen': function(){addExpense(2299)},
+					'onRevert': function(){substractExpense(2299)},
 					'Do': 'jump Scene3',
 				},
 			},

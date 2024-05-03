@@ -108,11 +108,11 @@
 				<game-screen>
 					<dialog-log></dialog-log>
 					<text-box></text-box>
-					<div data-component="modal" data-ui="stats">
-						<span>Dépenses : </span>
-						<meter value="0" min ="0" max="7500" data-stat="expenses"></meter>
-					</div>
 					<quick-menu></quick-menu>
+					<div data-component="modal" data-ui="stats">
+						<h4>Total des dépenses : <span id="totalAmountSpent">0</span> francs</h4>
+						<meter id="statBar" value="0" max="7500"></meter>
+					</div>
 				</game-screen>
 				<gallery-screen></gallery-screen>
 				<credits-screen></credits-screen>
