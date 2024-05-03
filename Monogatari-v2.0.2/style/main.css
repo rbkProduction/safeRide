@@ -1,0 +1,343 @@
+/**
+ * =============================================================================
+ * This is the file where all your styling should go in.
+ * Instead of modifying the styles found in the monogatari.css file or others,
+ * you should overwrite those styles in this file.
+ *
+ * The CSS selectors shown are not an extensive list but they are the most
+ * common you might want to change. To find what other elements are available,
+ * you can take a look at the monogatari.css file or use your browser's dev
+ * tools to inspect the elements.
+ * =============================================================================
+**/
+
+
+/**
+ * ===========================
+ * General Styling
+ * ===========================
+**/
+
+/* General Style */
+body {
+	font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+}
+
+/* Simple Button styles*/
+button {
+	color: black;
+	opacity: 0.7;
+	background-color: white;
+}
+
+/* Simple Button Style on Hover */
+button:hover {
+	color: white;
+	opacity: 0.7;
+	background-color: black;
+}
+
+/* General Styling for Menu Screens */
+[data-screen] {
+	color: black;
+	background-color: #333333;
+}
+
+
+/**
+ * ===========================
+ * Main Menu Styling
+ * ===========================
+**/
+
+/* Main Menu Styling */
+[data-screen="main"] {
+	background-image: url(../assets/scenes/homepage.png);
+}
+
+
+/* Main Menu Buttons Styling */
+[data-screen="main"] button {
+	align-items: center;
+	display: block;
+	color: black;
+	opacity: 0.7;
+	background-color: white;
+}
+
+/* Main Menu Buttons Styling on hover */
+[data-screen="main"] button:hover {
+	align-items: center;
+	display: block;
+	color: white;
+	opacity: 0.7;
+	background-color: black;
+}
+
+/* Centering the menu buttons */
+main-menu{
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/**
+ * ===========================
+ * Save and Load Menus Styling
+ * ===========================
+**/
+
+/* Slots Style */
+[data-component="save-slot"] figure {
+	opacity: 0.7;
+}
+
+/* Slot's Image Style */
+[data-component="save-slot"] img {
+	opacity: 0.7;
+}
+
+/* Slots Title Style */
+[data-component="save-slot"] figcaption {
+	opacity: 0.7;
+}
+
+/* Slots Delete Button Style */
+[data-component="save-slot"] button {
+	opacity: 0.7;
+}
+
+/**
+ * ===========================
+ * Game Elements Styling
+ * ===========================
+**/
+
+/* Style of the span bar */
+[data-ui="stats"] {
+	display: inline;
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	width: 300px;
+	border: 3px slateblue;
+}
+
+/* Style of the title */
+h1 {
+	-webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: white;
+};
+
+/* Choice Buttons style */
+[data-component="choice-container"] button {
+	align-items: center;
+	color: black;
+	opacity: 0.8;
+	background-color: white;
+	border-radius: 5px;
+}
+
+/* Choice Button Style on Hover */
+[data-component="choice-container"] button:hover {
+	align-items: center;
+	color: white;
+	opacity: 0.8;
+	background-color: black;
+}
+
+/* Text Box styling */
+[data-component="text-box"] {
+	opacity: 70%;
+	width: auto;
+	height: 50%;
+	margin: 0;
+	position: absolute;
+	left: 20%;
+	right: 20%;
+	color: black;
+	background-color: white;
+}
+
+/* Character Name Style */
+[data-ui="who"] {
+	font-size: large;
+}
+
+/* Style for Centered Text */
+[data-component="centered-dialog"] {
+	opacity: 100%;
+	color: black;
+}
+
+/* Character Images Styles */
+[data-screen="game"] [data-character] {
+	bottom: 6%;
+	max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+
+/* Other Images Styles */
+[data-screen="game"] [data-image] {
+	border-radius: 0%;
+};
+
+
+/**
+ * ===========================
+ * Quick Menu Styling
+ * ===========================
+**/
+
+/* These styles are applied to the Mobile version of the Quick Menu */
+
+/* Quick Menu Style */
+[data-component="quick-menu"] {
+	bottom: auto;
+	top: 0;
+}
+
+/* Quick Menu Buttons Style */
+[data-component="quick-menu"] span {
+	bottom: auto;
+	top: 0;
+}
+
+/* Quick Menu Buttons Style on Hover */
+[data-component="quick-menu"] span:hover {
+	bottom: auto;
+	top: 0;
+}
+
+/* Quick Menu Buttons Icon Style */
+[data-component="quick-menu"] > span > .fa {
+	bottom: auto;
+	top: 0;
+}
+
+/**
+ * ===========================
+ * Range Styling
+ * ===========================
+**/
+
+/* Use the background property to set a color for these */
+input[type=range]:focus::-webkit-slider-runnable-track {
+	background-color: orange;
+	opacity: 0.5;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	background-color: blue;
+	opacity: 0.5;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+	background-color: blueviolet;
+	opacity: 0.5;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+	background-color: green;
+	opacity: 0.5;
+}
+
+input[type=range]::-moz-range-track {
+	background-color: yellow;
+	opacity: 0.5;
+}
+
+input[type=range]::-ms-fill-lower {
+	background-color: red;
+	opacity: 0.5;
+}
+
+input[type=range]::-ms-fill-upper {
+	background-color: lightcoral;
+	opacity: 0.5;
+}
+
+
+/* Medium Screens, Phablets (601px) */
+/*@media screen and (min-width: 37.56255em) {
+/*	/* Styles for the desktop version of the Quick Menu */
+/*
+/*	/* Quick Menu Style */
+/*	[data-component="quick-menu"] {
+/*
+/*	}
+/*
+/*	/* Quick Menu Buttons Style */
+/*	[data-component="quick-menu"] span {
+/*
+/*	}
+/*
+/*	/* Quick Menu Buttons Style on Hover */
+/*	[data-component="quick-menu"] span:hover {
+/*
+/*	}
+/*}
+
+
+/** Medium Devices, Tablets (992px)**/
+@media screen and (min-width: 62em) {
+	choice-container {
+		width: 100%;
+	}
+};
+
+/** HD Screen, Large Devices, Wide Screens, Desktop (1200px) **/
+@media screen and (min-width: 75em) {
+	choice-container {
+		width: 100%;
+	}
+}
+
+/** Full HD Screen, Large Devices, Wide Screens, Large Desktops (1920px) **/
+@media screen and (min-width: 120em) {
+	choice-container {
+		width: 1700px;
+	}
+}
+
+/** **/
+@media screen and (min-width: 48em){
+	choice-container {
+		width: 100%;
+	};
+};
+
+
+/** Retina Screen , Large Devices, Wide Screens(2560px) **/
+@media screen and (min-width: 160em) {
+	choice-container {
+		width: 100%;
+	}
+}
+
+/** 4k Screens, Large Devices, Wide Screens (3840px) **/
+@media screen and (min-width: 240em) {
+	choice-container {
+		width: 100%;
+	}
+}
+
+/** 5k Screens, Large Devices, Wide Screens (5000px) **/
+@media screen and (min-width: 312.5em) {
+	choice-container {
+		width: 100%;
+	}
+}
+
+/** 8k Screens, Large Devices, Wide Screens (8000px) **/
+@media screen and (min-width: 500em) {
+	choice-container {
+		width: 100%;
+	}
+}
+
+
+
