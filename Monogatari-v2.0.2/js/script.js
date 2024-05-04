@@ -80,8 +80,10 @@ monogatari.assets ('images', {
 
 // Define the backgrounds for each scene.
 monogatari.assets ('scenes', {
+	'homepage': 'homepage.svg',
 	'storefront': 'storefront.svg',
-	'insideStore': 'insideStore.svg',
+	'insideStore_1': 'insideStore_1.svg',
+	'insideStore_2': 'insideStore_2.svg',
 	'cadre': 'cadre.svg',
 	'guidon': 'guidon.svg',
 });
@@ -152,7 +154,7 @@ function substractExpense(amount) {
 monogatari.script ({
 	// The game starts here.
 	'Start': [
-		'show scene storefront',
+		'show scene insideStore_1',
 		'show notification Welcome',
 		{
 			'Input': {
@@ -187,7 +189,7 @@ monogatari.script ({
 	],
 
 	'Scene1': [
-		'show scene insideStore with fadeIn',
+		'show scene insideStore_2 with fadeIn',
 		'show character u standing on left with fadeIn end-fadeOut',
 		'play music inShop with loop with volume 50',
 		'show character s standing on right with fadeIn end-fadeOut',

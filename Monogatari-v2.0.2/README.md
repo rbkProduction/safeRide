@@ -5,7 +5,10 @@ Cette fiction interactive s'est construite dans le cadre du cours [Développemen
 ![README image](readMe_image.png)
 
 ## Concept
-Alter'Eco a pour simple but de rendre l'utilisateur attentif sur des façons de vivre plus écologiques et saines. Pour ce faire, l'utilisateur est soumis à des questions sur la consommation en Suisse, et conséquemment sur la production des déchets. Chaque question souligne l'ampleur qu'un seul comportement peut avoir sur la santé de la Terre. Une fois que l'utilisateur a répondu, la solution correcte est donnée. Mais, surtout, une alternative facile et locale est proposée à l'utilisateur. 
+Custom ride est une fiction interactive dont le but est de sensibiliser le joueur aux implications financières que représentent un vélo de course, ainsi que de communiquer des connaissances sur les composants d'un vélo et leurs utilités respectives.
+
+Une vendeuse accompagne le joueur tout au long du jeu et lui partage une variété d'informations sur les composants du vélo. Le joueur a un budget de CHF ??? à respecter et doit respecter trois critères pour valider l'achat final de son vélo : (1) qu'il soit léger, (2) qu'il soit fiable et solide, (3) qu'il soit moderne. 
+Chaque étape permet une acquisiton de connaissances supplémentaires sur le vélo. 
 
 Par ce biais, l'objectif est de faciliter l'accès à d'autres modes de fonctionnement pour l'utilisateur. Ici, les solutions sont à portées de mains et sont bénéfiques à tous ceux qui désirent faire un geste.
 
@@ -36,4 +39,4 @@ Les personnages ont été réalisé gratuitement à l'aide de [Scratch](https://
 ### Sources
 Start : [Freepik](https://fr.freepik.com/photos-gratuite/concept-magasin-velos-velos_13659192.htm#fromView=search&page=2&position=12&uuid=d8cb5e66-87cf-41da-b60a-396f2b92d95c).
 Scene 1 : [Freepik](https://fr.freepik.com/photos-gratuite/concept-magasin-service-velo-velo_13659193.htm#fromView=search&page=1&position=46&uuid=d8cb5e66-87cf-41da-b60a-396f2b92d95c).
-Scene 3 [Freepik](https://fr.freepik.com/photos-gratuite/mecanicien-reparant-velo_4315129.htm#fromView=search&page=2&position=2&uuid=d8cb5e66-87cf-41da-b60a-396f2b92d95c).
+Scene 3 : [Freepik](https://fr.freepik.com/photos-gratuite/mecanicien-reparant-velo_4315129.htm#fromView=search&page=2&position=2&uuid=d8cb5e66-87cf-41da-b60a-396f2b92d95c).
