@@ -81,9 +81,8 @@ monogatari.assets ('images', {
 // Define the backgrounds for each scene.
 monogatari.assets ('scenes', {
 	'homepage': 'homepage.svg',
-	'storefront': 'storefront.svg',
-	'insideStore_1': 'insideStore_1.svg',
-	'insideStore_2': 'insideStore_2.svg',
+	'intro': 'intro.svg',
+	'insideStore': 'insideStore.svg',
 	'cadre': 'cadre.svg',
 	'guidon': 'guidon.svg',
 });
@@ -154,7 +153,7 @@ function substractExpense(amount) {
 monogatari.script ({
 	// The game starts here.
 	'Start': [
-		'show scene insideStore_1',
+		'show scene intro',
 		'show notification Welcome',
 		{
 			'Input': {
@@ -189,7 +188,7 @@ monogatari.script ({
 	],
 
 	'Scene1': [
-		'show scene insideStore_2 with fadeIn',
+		'show scene insideStore with fadeIn',
 		'show character u standing on left with fadeIn end-fadeOut',
 		'play music inShop with loop with volume 50',
 		'show character s standing on right with fadeIn end-fadeOut',
@@ -207,7 +206,7 @@ monogatari.script ({
 		'show scene cadre with fadeIn',
 		'show character u standing on left with fadeIn end-fadeOut',
 		'show character s standing on right with fadeIn end-fadeOut',
-		's Alors, voilà. Il y a trois sortes de cadre principales. Les cadres en aluminium, les cadres en carbone et ceux en acier.',
+		's Alors, voilà. Il y a trois sortes principales de cadre. Les cadres en aluminium, les cadres en carbone et ceux en acier.',
 		's Les cadres en acier sont très résistants et comfortables. En revanche, il faut les entretenir plus fréquemment vu que le risque de rouille est élevé. Et ils sont également assez lourds.',
 		's L\'aluminium, lui, est plus léger que l\'acier, mais il se conservera moins bien sur le long terme. Il est plus abordable en terme de budget qu\'un cadre en carbone ou en titane par exemple.',
 		's Enfin, le cadre en carbone est une très bonne option pour les cyclistes. Il est léger, flexible et comfortable. En revanche il est plus fragile et resistera moins bien aux chocs. Et le budget reste conséquent.',
@@ -239,19 +238,27 @@ monogatari.script ({
 	],
 
 	'Scene3': [
-		'show scene guidon with fadeIn',
+		'show scene insideStore with fadeIn',
 		'show character u doubting on left with fadeIn end-fadeOut',
 		'show character s standing on right with fadeIn end-fadeOut',
-		's Tu as depensé déjà CHF {{expenses}} pour le cadre.',
-		's Maintenant que nous avons la base du vélo. Nous allons passer au guidon.',
-		's ',
+		'centered Tu as depensé CHF {{expenses}} pour le cadre.',
+		's Maintenant que nous avons la base du vélo. Voyons quel cintre vous souhaitez pour votre guidon.',
+		'jump Scene4',
 	],
 
 
 	'Scene4': [
-		'show scene scene4 with fadeIn',
-		'show character u normal on right with fadeIn',
-
+		'show scene guidon with fadeIn',
+		'show character u normal on left with fadeIn end-fadeOut',
+		'show character s standing on right with fadeIn end-fadeOut',
+		's Les cintres pour vélo de courses permettent une variation de placement des mains.',
+		's Le cycliste peut les poser sur le dessus, soit vers les cocottes du bas pour une position plus aggressive.',
+		'u (En respouttant discrètement) Oui, ça merci. Je le savais..',
+		'centered Marie a remarqué ton commentaire.',
+		's Votre choix de cintre sera donc plutôt esthétique et orienté confort.',
+		'show scene guidon_1',
+		's Lequel vous intéresse-t-il ?',
+		
 	],
 
 	'Scene5': [

@@ -12,12 +12,9 @@ Chaque étape permet une acquisiton de connaissances supplémentaires sur le vé
 
 Par ce biais, l'objectif est de faciliter l'accès à d'autres modes de fonctionnement pour l'utilisateur. Ici, les solutions sont à portées de mains et sont bénéfiques à tous ceux qui désirent faire un geste.
 
-## Bibliographie
+## Ressources
 
-1. 
-2.  
-3. 
-4. [Statistiques du WWF sur le gaspillage alimentaire en Suisse]( https://www.wwf.ch/fr/nos-objectifs/gaspillage-alimentaire)
+1. [Le Cyclo - l'Index du Vélo](https://www.lecyclo.com/fr-ch/blogs/conseils/dictionnaire-du-velo#le-cadre)
 
 
 ## Autrice
