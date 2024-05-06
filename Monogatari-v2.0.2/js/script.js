@@ -146,6 +146,8 @@ function addExpense(amount) {
 	totalAmountSpent += amount;
 	// Upload the stat bar
 	uploadStatBar();
+	// Updating the lastExpense in the storage of the player
+	monogatari.storage ().lastExpense = amount;
 	return true;
 };
 
@@ -156,6 +158,14 @@ function substractExpense(amount) {
 	// Upload the stat bar
 	uploadStatBar();
 	return true;
+};
+
+// Function to limit the choices depending on the expenses
+function controlBudget(controlledAmount) {
+	let controlledAmountSpent = controlledAmount + totalAmountSpent;
+	if (controlledAmountSpent >= 7500){
+		return true;
+	};
 };
 
 monogatari.script ({
@@ -201,9 +211,10 @@ monogatari.script ({
 		'show character p 3-4 on left with fadeIn',
 		'play music inShop with loop with volume 50',
 		'show character m leftSide on right with fadeIn',
-		'm Bonjour. Bienvenue chez Bike\&Co ! Je suis Marie, comment puis-je vous aider ?',
-		'show character m front on right',
+		'm Bonjour. Bienvenue chez Custom Ride ! Je suis Marie, comment puis-je vous aider ?',
+		'show character m 3-4 on right',
 		'show character p front on left',
+		'show character m front on right',
 		'p Bonjour. Je suis à la recherche d\'un nouveau vélo de course et j\'aimerais assembler le mien pièce par pièce. Pouvez-vous m\'aider à choisir les composants ?',
 		'show character m smiling on right',
 		'm Bien sûr ! Nous allons vous faire un montage à la carte.',
@@ -229,25 +240,29 @@ monogatari.script ({
 		{
 			'Choice': {
 				'Cadre en acier': {
-					// https://www.fabrikcycles.ch/products/fabrik-kit-cadre-mei93?variant=39561821519933&currency=CHF&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&srsltid=AfmBOoq0d6fnRjlKMPoXGiiNaLh_ATEf5dDACArVe9CsssnDNtsZgj2BsIU
-					'Text': 'Cadre en acier - CHF 229',
-					'onChosen': function(){addExpenseExpense(229)},
-					'onRevert': function(){substractExpense(229)},
+					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-randonnée-et-cyclotourisme/520/kit-cadre-520-disque/p/34200/?colorCode=red
+					'Text': 'Cadre en acier - CHF 819',
+					'Clickable': function(){controlBudget(819)},
+					'onChosen': function(){addExpenseExpense(819)},
+					'onRevert': function(){substractExpense(819)},
 				},
 				'Cadre en aluminium': {
-					'Text': 'Cadre en aluminium - CHF 729.99',
-					'onChosen': function(){addExpense(729.99)},
-					'onRevert': function(){substractExpense(729.99)},
+					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-randonnée-et-cyclotourisme/920/kit-cadre-920/p/21995/?colorCode=tan
+					'Text': 'Cadre en aluminium - CHF 1399',
+					'Clickable': function(){controlBudget(1399)},
+					'onChosen': function(){addExpense(1399)},
+					'onRevert': function(){substractExpense(1399)},
 				},
 				'Cadre en carbone': {
-					// https://bmc-switzerland.com/fr/collections/road-racing-bikes-teammachine-slr/products/teammachine-slr-frs-bike-frames-bmc-23-10611-010
-					'Text': 'Cadre en carbone - CHF 2\'299',
-					'onChosen': function(){addExpense(2299)},
-					'onRevert': function(){substractExpense(2299)},
+					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-route/vélos-de-route-performance/domane/domane-slr/kit-cadre-domane-slr-4e-gén-/p/37303/?colorCode=black_grey
+					'Text': 'Cadre en carbone - CHF 5499',
+					'Clickable': function(){controlBudget(5499)},
+					'onChosen': function(){addExpense(5499)},
+					'onRevert': function(){substractExpense(5499)},
 				},
 			},
 		},
-		'centered Tu as depensé CHF {{amount} pour le cadre.',
+		'centered Tu as depensé CHF {{lastExpense}} pour le cadre.',
 		'jump Scene3',
 	],
 
@@ -261,7 +276,7 @@ monogatari.script ({
 
 
 	'Scene4': [
-		'show scene guidon with fadeIn',
+		'show scene insideStore',
 		'show character p front on left with fadeIn',
 		'show character m smiling on right with fadeIn',
 		'm Les cintres pour vélo de courses permettent une variation de placement des mains.',
@@ -274,29 +289,27 @@ monogatari.script ({
 		'm Lequel vous fait de l\'œil?',
 		{
 			'Choice': {
-				'Guidon 1': {
-					'Text': 'Guidon 1',
-					'onChosen': function(){addExpense(69.99)},
-					'onRevert': function(){substractExpense(69.99)},
+				'Cintre 1': {
+					// https://bmc-switzerland.com/fr/collections/components/products/handlebar-ics-aero-bike-components-bmc-22-10801-005
+					'Text': 'Cintre BMC - CHF 349',
+					'onChosen': function(){addExpense(349)},
+					'onRevert': function(){substractExpense(349)},
 				},
-				'Guidon 2': {
-					'Text': 'Guidon 2',
-					'onChosen': function(){addExpense(729.99)},
-					'onRevert': function(){substractExpense(729.99)},
+				'Cintre 2': {
+					// https://www.syncros.com/ch/fr/product/syncros-creston-1-5-compact-handlebar
+					'Text': 'Cintre Syncros - CHF 76.99',
+					'onChosen': function(){addExpense(76.99)},
+					'onRevert': function(){substractExpense(76.99)},
 				},
-				'Guidon 3': {
-					'Text': 'Guidon 4',
-					'onChosen': function(){addExpense(729.99)},
-					'onRevert': function(){substractExpense(729.99)},
-				},
-				'Guidon 4': {
-					'Text': 'Guidon 4',
-					'onChosen': function(){addExpense(729.99)},
-					'onRevert': function(){substractExpense(729.99)},
+				'Cintre 3': {
+					// https://www.trekbikes.com/ch/fr_CH/equipement/composants-pour-vélo/cintres-de-vélo/cintres-de-vélos-route/cintre-route-bontrager-pro-vr-c/p/32645/?colorCode=black
+					'Text': 'Cintre Bontrager',
+					'onChosen': function(){addExpense(259)},
+					'onRevert': function(){substractExpense(259)},
 				},
 			},
 		},
-		'centered Tu as depensé CHF {{amount}} pour le cadre.',
+		'centered Tu as depensé CHF {{lastExpense}} pour le cadre.',
 		'show character p surprised on left',
 		'jump Scene5',
 	],
@@ -323,27 +336,35 @@ monogatari.script ({
 		'm Qu\'est-ce que vous souhaitez installer sur votre vélo du coup ?',
 		{
 			'Choice': {
-				'Les freins à patins': {
-					'Text': 'Les freins à patins - CHF 729.99',
-					'onChosen': function(){addExpense(729.99)},
-					'onRevert': function(){substractExpense(729.99)},
+				'Les freins à patins - Shimano Dura-Ace': {
+					// https://bike.shimano.com/fr-FR/product/component/dura-ace-r9200/BR-R9200.html
+					'Text': 'Les freins à patins Shimano Dura-Ace - CHF 132',
+					'onChosen': function(){addExpense(132)},
+					'onRevert': function(){substractExpense(132)},
+				},
+				'Les freins à patins - SRAM Force': {
+					// https://www.sram.com/en/sram/models/rb-frc-d1
+					'Text': 'Les freins à patins SRAM Force - CHF 85',
+					'onChosen': function(){addExpense(85)},
+					'onRevert': function(){substractExpense(85)},
 				},
 				'Les freins à disque': {
-					'Text': 'Les freins à disque - CHF 729.99',
-					'onChosen': function(){addExpense(729.99)},
-					'onRevert': function(){substractExpense(729.99)},
+					// https://bike.shimano.com/fr-FR/product/component/dura-ace-r9200/BR-R9270.html
+					'Text': 'Les freins à disque Shimano Dura-Ace - CHF 114 + CHF 61.90',
+					'onChosen': function(){addExpense(175.9)},
+					'onRevert': function(){substractExpense(175.9)},
 				}
 			}
 		},
-		'centered Tu as depensé CHF {{amount}} pour le cadre.',
+		'centered Tu as depensé CHF {{lastExpense}} pour les freins.',
 		'jump Scene 6',
 	],
 
 
 	'Scene6': [
-		'show scene manettes with fadeIn',
-		'show character u thinking on left with fadeIn end-fadeOut',
-		'show character s showing on right with fadeIn end-fadeOut',
+		'show scene insideStore',
+		'show character u interested on left with fadeIn end-fadeOut',
+		'show character s 3-4 on right with fadeIn end-fadeOut',
 		's Avec les étriers de frein, il vous faut les manettes qu\'on va venir fixer sur le guidon. Les manettes doivent aussi être compatibles avec la transmission que vous allez choisir.',
 		'u Attendez, la transmission ? ',
 		's Oui, c\' est tout le système qui va vous permettre de changer de vitesses.',
