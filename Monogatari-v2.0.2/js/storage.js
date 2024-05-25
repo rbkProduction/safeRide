@@ -8,4 +8,5 @@ monogatari.storage ({
 	budget: 7500,
 	expenses: 0,
 	lastExpense: 0,
+	overBudget: true,
 });

@@ -17,6 +17,13 @@
  * ===========================
 **/
 
+/* Style of the title */
+h1 {
+	color: white;
+	-webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+};
+
 /* Style of the statBar <div> */
 [data-ui="stats"] {
 	display: inline;
@@ -36,10 +43,11 @@
 	background-color: aliceblue;
 };
 
-/* Style of the title */
-h1 {
-	-webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: white;
+
+
+/* Style of the disabeld button (because of the Clickable option) */
+[disabled] {
+	opacity: .5;
 };
 
 

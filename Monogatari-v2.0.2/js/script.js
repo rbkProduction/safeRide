@@ -148,6 +148,10 @@ function addExpense(amount) {
 	uploadStatBar();
 	// Updating the lastExpense in the storage of the player
 	monogatari.storage ().lastExpense = amount;
+	// Function to limit the choices depending on the expenses
+	if (totalAmountSpent > 7500){
+		this.storage ().overBudget = false;
+	};
 	return true;
 };
 
@@ -158,14 +162,6 @@ function substractExpense(amount) {
 	// Upload the stat bar
 	uploadStatBar();
 	return true;
-};
-
-// Function to limit the choices depending on the expenses
-function controlBudget(controlledAmount) {
-	let controlledAmountSpent = controlledAmount + totalAmountSpent;
-	if (controlledAmountSpent >= 7500){
-		return true;
-	};
 };
 
 monogatari.script ({
@@ -242,21 +238,18 @@ monogatari.script ({
 				'Cadre en acier': {
 					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-randonnée-et-cyclotourisme/520/kit-cadre-520-disque/p/34200/?colorCode=red
 					'Text': 'Cadre en acier - CHF 819',
-					'Clickable': function(){controlBudget(819)},
-					'onChosen': function(){addExpenseExpense(819)},
+					'onChosen': function(){addExpense(819)},
 					'onRevert': function(){substractExpense(819)},
 				},
 				'Cadre en aluminium': {
 					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-randonnée-et-cyclotourisme/920/kit-cadre-920/p/21995/?colorCode=tan
 					'Text': 'Cadre en aluminium - CHF 1399',
-					'Clickable': function(){controlBudget(1399)},
 					'onChosen': function(){addExpense(1399)},
 					'onRevert': function(){substractExpense(1399)},
 				},
 				'Cadre en carbone': {
 					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-route/vélos-de-route-performance/domane/domane-slr/kit-cadre-domane-slr-4e-gén-/p/37303/?colorCode=black_grey
 					'Text': 'Cadre en carbone - CHF 5499',
-					'Clickable': function(){controlBudget(5499)},
 					'onChosen': function(){addExpense(5499)},
 					'onRevert': function(){substractExpense(5499)},
 				},
@@ -285,25 +278,34 @@ monogatari.script ({
 		'show character m surprised on right',
 		'centered Marie a remarqué ton commentaire.',
 		'm Votre choix de cintre sera donc plutôt orienté esthétique et confort.',
-		'show scene guidon_1',
+		'show scene guidon',
 		'm Lequel vous fait de l\'œil?',
 		{
 			'Choice': {
 				'Cintre 1': {
 					// https://bmc-switzerland.com/fr/collections/components/products/handlebar-ics-aero-bike-components-bmc-22-10801-005
 					'Text': 'Cintre BMC - CHF 349',
+					'Clickable': function(){
+						return this.storage().overBudget
+					},
 					'onChosen': function(){addExpense(349)},
 					'onRevert': function(){substractExpense(349)},
 				},
 				'Cintre 2': {
 					// https://www.syncros.com/ch/fr/product/syncros-creston-1-5-compact-handlebar
 					'Text': 'Cintre Syncros - CHF 76.99',
+					'Clickable': function(){
+						return this.storage().overBudget
+					},
 					'onChosen': function(){addExpense(76.99)},
 					'onRevert': function(){substractExpense(76.99)},
 				},
 				'Cintre 3': {
 					// https://www.trekbikes.com/ch/fr_CH/equipement/composants-pour-vélo/cintres-de-vélo/cintres-de-vélos-route/cintre-route-bontrager-pro-vr-c/p/32645/?colorCode=black
-					'Text': 'Cintre Bontrager',
+					'Text': 'Cintre Bontrager - CHF 259',
+					'Clickable': function(){
+						return this.storage().overBudget
+					},
 					'onChosen': function(){addExpense(259)},
 					'onRevert': function(){substractExpense(259)},
 				},
@@ -339,18 +341,27 @@ monogatari.script ({
 				'Les freins à patins - Shimano Dura-Ace': {
 					// https://bike.shimano.com/fr-FR/product/component/dura-ace-r9200/BR-R9200.html
 					'Text': 'Les freins à patins Shimano Dura-Ace - CHF 132',
+					'Clickable': function(){
+						return this.storage().overBudget
+					},
 					'onChosen': function(){addExpense(132)},
 					'onRevert': function(){substractExpense(132)},
 				},
 				'Les freins à patins - SRAM Force': {
 					// https://www.sram.com/en/sram/models/rb-frc-d1
 					'Text': 'Les freins à patins SRAM Force - CHF 85',
+					'Clickable': function(){
+						return this.storage().overBudget
+					},
 					'onChosen': function(){addExpense(85)},
 					'onRevert': function(){substractExpense(85)},
 				},
 				'Les freins à disque': {
 					// https://bike.shimano.com/fr-FR/product/component/dura-ace-r9200/BR-R9270.html
 					'Text': 'Les freins à disque Shimano Dura-Ace - CHF 114 + CHF 61.90',
+					'Clickable': function(){
+						return this.storage().overBudget
+					},
 					'onChosen': function(){addExpense(175.9)},
 					'onRevert': function(){substractExpense(175.9)},
 				}
@@ -384,21 +395,33 @@ monogatari.script ({
 			'Choice': {
 				'1x 11S': {
 					'Text': '1x 11S - CHF 729.99',
+					'Clickable': function(){
+						return this.storage().overBudget
+					},
 					'onChosen': function(){addExpense(729.99)},
 					'onRevert': function(){substractExpense(729.99)},
 				},
 				'2x 11S': {
 					'Text': '2x 11S - CHF 729.99',
+					'Clickable': function(){
+						return this.storage().overBudget
+					},
 					'onChosen': function(){addExpense(729.99)},
 					'onRevert': function(){substractExpense(729.99)},
 				},
 				'1x 12S': {
 					'Text': '1x 12S - CHF 729.99',
+					'Clickable': function(){
+						return this.storage().overBudget
+					},
 					'onChosen': function(){addExpense(729.99)},
 					'onRevert': function(){substractExpense(729.99)},
 				},
 				'2x 12S': {
 					'Text': '2x 12S - CHF 729.99',
+					'Clickable': function(){
+						return this.storage().overBudget
+					},
 					'onChosen': function(){addExpense(729.99)},
 					'onRevert': function(){substractExpense(729.99)},
 				},
