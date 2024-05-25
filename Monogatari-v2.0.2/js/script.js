@@ -204,11 +204,11 @@ monogatari.script ({
 
 	'Scene1': [
 		'show scene insideStore with fadeIn',
-		'show character p 3-4 on left with fadeIn',
+		'show character p thirdSide on left with fadeIn',
 		'play music inShop with loop with volume 50',
 		'show character m leftSide on right with fadeIn',
 		'm Bonjour. Bienvenue chez Custom Ride ! Je suis Marie, comment puis-je vous aider ?',
-		'show character m 3-4 on right',
+		'show character m thirdSide on right',
 		'show character p front on left',
 		'show character m front on right',
 		'p Bonjour. Je suis à la recherche d\'un nouveau vélo de course et j\'aimerais assembler le mien pièce par pièce. Pouvez-vous m\'aider à choisir les composants ?',
@@ -262,7 +262,7 @@ monogatari.script ({
 	'Scene3': [
 		'show scene insideStore with fadeIn',
 		'show character p rightSide on left with fadeIn',
-		'show character m 3-4 on right with fadeIn',
+		'show character m thirdSide on right with fadeIn',
 		'm Maintenant que nous avons la base du vélo. Voyons quel cintre vous souhaitez pour votre guidon.',
 		'jump Scene4',
 	],
@@ -319,7 +319,7 @@ monogatari.script ({
 	'Scene5': [
 		'show scene freins with fadeIn',
 		'show character p doubting on left with fadeIn',
-		'show character m 3-4 on right with fadeIn',
+		'show character m thirdSide on right with fadeIn',
 		'm Alors, concernant les freins, vous avez le choix entre des freins mécaniques ou des freins hydrauliques.',
 		'm Les freins mécaniques fonctionnent avec un système de patins qui vont venir faire le frottement avec la jante de la roue lorsque vous freinez. Il s\'agit d\'un étrier que l\'on va venir fixer à l\'avant et à l\'arrière des roues.',
 		'm C\'est un très bon système, abordable et amplement efficace.',
@@ -375,7 +375,7 @@ monogatari.script ({
 	'Scene6': [
 		'show scene insideStore',
 		'show character u interested on left with fadeIn end-fadeOut',
-		'show character s 3-4 on right with fadeIn end-fadeOut',
+		'show character s thirdSide on right with fadeIn end-fadeOut',
 		's Avec les étriers de frein, il vous faut les manettes qu\'on va venir fixer sur le guidon. Les manettes doivent aussi être compatibles avec la transmission que vous allez choisir.',
 		'u Attendez, la transmission ? ',
 		's Oui, c\' est tout le système qui va vous permettre de changer de vitesses.',
@@ -427,19 +427,25 @@ monogatari.script ({
 				},
 			},
 		},
+		'centered Tu as depensé CHF {{lastExpense}} pour les manettes de freins.',
+		'jump Scene7',
 	
 	],
-
 
 	'Scene7': [
-		'show scene scene7 with fadeIn',
-		'show character u normal on right',
-	
+		'show scene insideStore',
+		'show character p normal on left',
+		'show character m thirdSide on right',
+		'm Passons mainteant au choix de la selle.',
+		'p Hum, excusez-moi, il reste encore beaucoup de composants à acheter pour mon vélo ?',
+		'm Non, rassurez-vous, nous sommes presques au bout. Il nous reste encore la selle, le pédalier, les deux dérailleurs, les roues et les pneus, ainsi que les pédales.',
+		'p D\'accord, je me rends compte quand même de l\'investissement que cela représente.',
+		'm Je vous laisse me suivre..',
+		'jump Scene8',
 	],
 
-
 	'Scene8': [
-		'show scene scene8 with fadeIn',
+		'show scene selle with fadeIn',
 		'show character u doubting on right',
 
 	],
