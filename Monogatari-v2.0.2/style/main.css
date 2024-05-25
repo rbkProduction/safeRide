@@ -17,13 +17,6 @@
  * ===========================
 **/
 
-/* Style of the title */
-h1 {
-	color: white;
-	-webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
-};
-
 /* Style of the statBar <div> */
 [data-ui="stats"] {
 	display: inline;
@@ -43,11 +36,35 @@ h1 {
 	background-color: aliceblue;
 };
 
+/* Style of the title */
+h1 {
+	color: white;
+	-webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+};
 
 
 /* Style of the disabeld button (because of the Clickable option) */
 [disabled] {
 	opacity: .5;
+};
+
+/* Style of the choices' buttons */
+.choicesButtonsLeft {
+	position: relative;
+	top: 150px;
+	left: 0px;
+};
+.choicesButtonsCenter {
+	position: relative;
+	top: 150px;
+	left: auto;
+	right: auto;
+};
+.choicesButtonsRight {
+	position: relative;
+	top: 150px;
+	right: 0px;
 };
 
 

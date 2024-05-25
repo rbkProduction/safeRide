@@ -77,12 +77,15 @@ monogatari.assets ('videos', {
 
 // Define the images used in the game.
 monogatari.assets ('images', {
-	
+	'cadreAcier': 'cadre/cadreAcier.svg',
+	'cadreAlu': 'cadre/cadreAlu.svg',
+	'cadreCarbone': 'cadre/cadreCarbone.svg',
 });
 
 // Define the backgrounds for each scene.
 monogatari.assets ('scenes', {
 	'homepage': 'homepage.svg',
+	'storefront': 'storefront.svg',
 	'intro': 'intro.svg',
 	'insideStore': 'insideStore.svg',
 	'cadre': 'cadre.svg',
@@ -167,7 +170,7 @@ function substractExpense(amount) {
 monogatari.script ({
 	// The game starts here.
 	'Start': [
-		'show scene intro',
+		'show scene storefront',
 		'show notification Welcome',
 		{
 			'Input': {
@@ -193,17 +196,17 @@ monogatari.script ({
 				'Warning': 'Il faut entrer un nom.'
 			}
 		},
-		'centered Bonjour {{player.name}}.',
-		'centered Cela fait quelques temps maintenant que tu t\'es mis au cyclisme et tu souhaites investir dans un nouveau vélo de course.',
-		'centered Tu t\'es rendu chez Custom Ride, l\'expert du montage à la carte. Et tu as rendez-vous avec Marie qui va te conseiller tout au long du processus.',
-		'centered Par contre, tu es limité en terme de budget et tu peux te permettre de dépenser CHF ??? au maximum.',
-		'centered Ce que tu recherches pour ton nouveau vélo : de la légèreté, de la polyvalence et du style.',
-		'centered Bonne chance et attention au budget !',
+		'centered   Bonjour {{player.name}}.  ',
+		'centered   Cela fait quelques temps maintenant que tu t\'es mis au cyclisme et tu souhaites investir dans un nouveau vélo de course.  ',
+		'centered   Tu t\'es rendu chez Custom Ride, l\'expert du montage à la carte. Et tu as rendez-vous avec Marie qui va te conseiller tout au long du processus.  ',
+		'centered   Par contre, tu es limité en terme de budget et tu peux te permettre de dépenser CHF ??? au maximum.  ',
+		'centered   Ce que tu recherches pour ton nouveau vélo : de la légèreté, de la polyvalence et du style.  ',
+		'centered   Bonne chance et attention au budget !  ',
 		'jump Scene1',
 	],
 
 	'Scene1': [
-		'show scene insideStore with fadeIn',
+		'show scene intro with fadeIn',
 		'show character p thirdSide on left with fadeIn',
 		'play music inShop with loop with volume 50',
 		'show character m leftSide on right with fadeIn',
@@ -229,8 +232,11 @@ monogatari.script ({
 		'show character p front on left with fadeIn',
 		'show character m front on right with fadeIn',
 		'm Alors, voilà. Il y a trois options principales qui s\'offrent à vous pour le cadre. Les cadres en aluminium, les cadres en carbone et ceux en acier.',
+		'show image cadreAcier on left with fadeIn',
 		'm Les cadres en acier sont très résistants et comfortables. En revanche, il faut les entretenir plus fréquemment vu que le risque de rouille est élevé. Et ils sont également assez lourds.',
+		'show image cadreAlu on center with fadeIn',
 		'm L\'aluminium, lui, est plus léger que l\'acier, mais il se conservera un peu moins bien sur le long terme. Et il est plus abordable en terme de budget qu\'un cadre en carbone ou en titane par exemple.',
+		'show image cadreCarbone on right with fadeIn',
 		'm Enfin, le cadre en carbone offre une meilleure légèreté et une meilleur absorption des vibrations. Il est plus cher, mais offre des performances supérieures.',
 		'p Je vois, je vois. Huuum, laissez-moi réfléchir...',
 		{
@@ -238,24 +244,30 @@ monogatari.script ({
 				'Cadre en acier': {
 					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-randonnée-et-cyclotourisme/520/kit-cadre-520-disque/p/34200/?colorCode=red
 					'Text': 'Cadre en acier - CHF 819',
+					'Class': 'choicesButtonsLeft',
 					'onChosen': function(){addExpense(819)},
 					'onRevert': function(){substractExpense(819)},
 				},
 				'Cadre en aluminium': {
 					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-randonnée-et-cyclotourisme/920/kit-cadre-920/p/21995/?colorCode=tan
 					'Text': 'Cadre en aluminium - CHF 1399',
+					'Class': 'choicesButtonsCenter',
 					'onChosen': function(){addExpense(1399)},
 					'onRevert': function(){substractExpense(1399)},
 				},
 				'Cadre en carbone': {
 					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-route/vélos-de-route-performance/domane/domane-slr/kit-cadre-domane-slr-4e-gén-/p/37303/?colorCode=black_grey
 					'Text': 'Cadre en carbone - CHF 5499',
+					'Class': 'choicesButtonsRight',
 					'onChosen': function(){addExpense(5499)},
 					'onRevert': function(){substractExpense(5499)},
 				},
 			},
 		},
-		'centered Tu as depensé CHF {{lastExpense}} pour le cadre.',
+		'hide image cadreAlu',
+		'hide image cadreAcier',
+		'hide image cadreCarbone',
+		'centered   Tu as depensé CHF {{lastExpense}} pour le cadre.  ',
 		'jump Scene3',
 	],
 
@@ -276,7 +288,7 @@ monogatari.script ({
 		'm Le cycliste peut les poser soit sur le dessus, soit vers les cocottes du bas pour une position plus aggressive.',
 		'p (En respouttant discrètement) Oui, ça merci. Je le savais..',
 		'show character m surprised on right',
-		'centered Marie a remarqué ton commentaire.',
+		'centered   Marie a remarqué ton commentaire.  ',
 		'm Votre choix de cintre sera donc plutôt orienté esthétique et confort.',
 		'show scene guidon',
 		'm Lequel vous fait de l\'œil?',
@@ -311,7 +323,7 @@ monogatari.script ({
 				},
 			},
 		},
-		'centered Tu as depensé CHF {{lastExpense}} pour le cadre.',
+		'centered   Tu as depensé CHF {{lastExpense}} pour le cintre.  ',
 		'show character p surprised on left',
 		'jump Scene5',
 	],
@@ -367,7 +379,7 @@ monogatari.script ({
 				}
 			}
 		},
-		'centered Tu as depensé CHF {{lastExpense}} pour les freins.',
+		'centered   Tu as depensé CHF {{lastExpense}} pour les freins.  ',
 		'jump Scene 6',
 	],
 
@@ -427,7 +439,7 @@ monogatari.script ({
 				},
 			},
 		},
-		'centered Tu as depensé CHF {{lastExpense}} pour les manettes de freins.',
+		'centered   Tu as depensé CHF {{lastExpense}} pour les manettes de freins.  ',
 		'jump Scene7',
 	
 	],
