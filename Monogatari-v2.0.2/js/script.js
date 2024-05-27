@@ -123,15 +123,16 @@ monogatari.characters ({
 		color: 'orange',
 		directory: 'marie',
 		sprites: {
-			thirdSide: 'thirdSide.png',
-			back: 'back.png',
-			doubting: 'doubting.png',
-			front: 'front.png',
+			angry: 'angry.png',
+			bored: 'bored.png',
+			crying: 'crying.png',
 			laughing: 'laughing.png',
-			leftSide: 'leftSide.png',
-			shocked: 'shocked.png',
+			normal: 'normal.png',
+			sad: 'sad.png',
 			smiling: 'smiling.png',
 			surprised: 'surprised.png',
+			upset: 'upset.png',
+			worried: 'worried.png',
 		},
 	},
 	'p': {
@@ -139,16 +140,17 @@ monogatari.characters ({
 		color: 'green',
 		directory: 'player',
 		sprites: {
-			thirdSide: 'thirdSide.png',
-			back: 'back.png',
+			bored: 'bored.png',
 			doubting: 'doubting.png',
-			front: 'front.png',
+			embarassed: 'embarassed.png',
 			interested: 'interested.png',
-			laughing: 'laughing.png',
-			rightSide: 'rightSide.png',
-			shocked: 'shocked.png',
+			normal: 'normal.png',
+			proud: 'proud.png',
 			smiling: 'smiling.png',
 			surprised: 'surprised.png',
+			thinking: 'thiking.png',
+			unpleased: 'unpleased.png',
+			wink: 'wink.png',
 		},
 	},
 });
@@ -194,7 +196,7 @@ monogatari.script ({
 	// The game starts here.
 	'Start': [
 		'show scene storefront',
-		'play music intro on loop with volume 50',
+		'play music intro with volume 30',
 		'show notification Welcome',
 		{
 			'Input': {
@@ -231,31 +233,26 @@ monogatari.script ({
 
 	'Scene1': [
 		'show scene shop with fadeIn',
-		'show character p thirdSide on left with fadeIn',
-		'show character m leftSide on right with fadeIn',
+		'show character p normal on right with fadeIn',
+		'show character m normal on left with fadeIn',
 		'm Bonjour. Bienvenue chez Custom Ride ! Je suis Marie, comment puis-je vous aider ?',
-		'show character m thirdSide on right',
-		'show character p front on left',
-		'show character m front on right',
+		'show character m laughing on left',
+		'show character p embarassed on right',
 		'p Bonjour. Je suis à la recherche d\'un nouveau vélo de course et j\'aimerais assembler le mien pièce par pièce. Pouvez-vous m\'aider à choisir les composants ?',
-		'show character m smiling on right',
+		'show character m normal on left',
 		'm Bien sûr ! Nous allons vous faire un montage à la carte.',
 		'p Exactement.',
 		'm Super, je vous laisse me suivre. On va commencer par choisir un cadre.',
-		'show character m leftSide',
-		'show character m back',
-		'show character p rightSide',
-		'show character p back',
 		'jump Scene2',
-		'stop music intro',
 	],
 
 
 	'Scene2': [
 		'show scene cadre with fadeIn',
-		'play music game on loop with volume 50',
-		'show character p front on left with fadeIn',
-		'show character m front on right with fadeIn',
+		'stop music intro',
+		'play music game on loop with volume 30',
+		'show character p normal on right with fadeIn',
+		'show character m normal on left with fadeIn',
 		'm Alors, voilà. Il y a trois options principales qui s\'offrent à vous pour le cadre. Les cadres en aluminium, les cadres en carbone et ceux en acier.',
 		'show image cadreAcier on left with fadeIn',
 		'm Les cadres en acier sont très résistants et comfortables. En revanche, il faut les entretenir plus fréquemment vu que le risque de rouille est élevé. Et ils sont également assez lourds.',
@@ -289,6 +286,7 @@ monogatari.script ({
 				},
 			},
 		},
+		'play sound cash',
 		'hide image cadreAlu',
 		'hide image cadreAcier',
 		'hide image cadreCarbone',
@@ -298,8 +296,8 @@ monogatari.script ({
 
 	'Scene3': [
 		'show scene shop with fadeIn',
-		'show character p rightSide on left with fadeIn',
-		'show character m thirdSide on right with fadeIn',
+		'show character p interested on right with fadeIn',
+		'show character m smiling on left with fadeIn',
 		'm Maintenant que nous avons la base du vélo. Voyons quel cintre vous souhaitez pour votre guidon.',
 		'jump Scene4',
 	],
@@ -307,15 +305,18 @@ monogatari.script ({
 
 	'Scene4': [
 		'show scene shop',
-		'show character p front on left with fadeIn',
-		'show character m smiling on right with fadeIn',
+		'show character m bored on left',
+		'show character p normal on right',
 		'm Les cintres pour vélo de courses permettent une variation de placement des mains.',
 		'm Le cycliste peut les poser soit sur le dessus, soit vers les cocottes du bas pour une position plus aggressive.',
+		'show character p bored on right',
 		'm Votre choix de cintre sera donc plutôt orienté esthétique et confort.',
 		'show image cintreBMC on left with fadeIn',
 		'show image cintreBontrager on center with fadeIn',
-		'show image cintreSyncros on right with fadeIn',
+		'show image cintreSyncros on right',
+		'show character m normal on left',
 		'm Lequel vous fait de l\'œil?',
+		'show character p thinking on right',
 		{
 			'Choice': {
 				'Cintre 1': {
@@ -350,18 +351,19 @@ monogatari.script ({
 				},
 			},
 		},
+		'play sound cash',
 		'hide image cintreBMC with fadeIn',
 		'hide image cintreBontrager on center with fadeIn',
 		'hide image cintreSyncros on right with fadeIn',
 		'centered Tu as depensé CHF {{lastExpense}} pour le cintre.',
-		'show character p surprised on left',
+		'show character p proud on left',
 		'jump Scene5',
 	],
 
 	'Scene5': [
 		'show scene shop with fadeIn',
-		'show character p doubting on left with fadeIn',
-		'show character m thirdSide on right with fadeIn',
+		'show character p normal on right with fadeIn',
+		'show character m surprised on left with fadeIn',
 		'm Alors, concernant les freins, vous avez le choix entre des freins mécaniques ou des freins hydrauliques.',
 		'm Les freins mécaniques fonctionnent avec un système de patins qui vont venir faire le frottement avec la jante de la roue lorsque vous freinez. Il s\'agit d\'un étrier que l\'on va venir fixer à l\'avant et à l\'arrière des roues.',
 		'show image freinsShimano on left with fadeIn',
@@ -373,6 +375,7 @@ monogatari.script ({
 		'm Ils nécessitent également de l\'huile qui l\'on va introduire dans les manettes de freins, d\'où le terme « hydraulique ».',
 		'p Et au niveau ensuite de l\'entretien, y-a-t-il une différence entre les deux ?',
 		'm Légèrement, oui.',
+		'show character p unpleased on right with fadeIn',
 		'm Les freins à disque vont avoir besoin d\'une purge du liquide une à doix fois par an selon votre fréquence d\'utilisation. Aussi, de temps en temps, quand vous lavez votre vélo par exemple, vous devrez juste mettre un peu de produit dégraissant sur les disques et essuyez avec un chiffon propre.',
 		'm Mais attention, surtout ne touchez jamais les disques avec vos mains, qui sont par défaut plutôt grasses. Un vieux t-shirt que vous déchirez en morceaux fera très bien l\'affaire.',
 		'p Et les freins à patins ?',
@@ -415,22 +418,25 @@ monogatari.script ({
 				}
 			}
 		},
+		'play sound cash',
 		'hide image freinsShimano',
 		'hide image freinsSram',
 		'hide image freinsDisque',
 		'centered Tu as depensé CHF {{lastExpense}} pour les freins.',
-		'jump Scene 6',
+		'jump Scene6',
 	],
 
 
 	'Scene6': [
 		'show scene shop',
-		'show character p interested on left with fadeIn end-fadeOut',
-		'show character m thirdSide on right with fadeIn end-fadeOut',
+		'show character p smiling on right with fadeIn',
+		'show character m normal on left with fadeIn',
 		'm Avec les étriers de frein, il vous faut les manettes qu\'on va venir fixer sur le guidon. Les manettes doivent aussi être compatibles avec la transmission que vous allez choisir.',
 		'p Attendez, la transmission ? ',
+		'show character m bored on left with fadeIn',
 		'm Oui, c\' est tout le système qui va vous permettre de changer de vitesses.',
 		'm À ce stade, vous devez choisir sur quelle système de transmission vous aller vous orienter.',
+		'show character m normal on left with fadeIn',
 		'm Les trois plus grandes marques sont Shimano, SRAM et Campagnolo.',
 		'm SRAM et Campagnolo sont de très très bonnes marques, mais si je peux me permettre, je vous recommande Shimano.',
 		'm Avec Shimano, vous aurez une aisance à entretenir les pièces puisque c\'est une marque qui est très répandue. En plus, Shimano est très qualitatif et fonctionne très facilement.',
@@ -478,6 +484,7 @@ monogatari.script ({
 				},
 			},
 		},
+		'play sound cash',
 		'centered Tu as depensé CHF {{lastExpense}} pour les manettes de freins.',
 		'jump Scene7',
 	
@@ -485,11 +492,12 @@ monogatari.script ({
 
 	'Scene7': [
 		'show scene shop',
-		'show character p normal on left',
-		'show character m thirdSide on right',
+		'show character p bored on left',
+		'show character m smiling on left',
 		'm Passons mainteant au choix de la selle.',
 		'p Hum, excusez-moi, il reste encore beaucoup de composants à acheter pour mon vélo ?',
 		'm Non, rassurez-vous, nous sommes presques au bout. Il nous reste encore la selle, le pédalier, les deux dérailleurs, les roues et les pneus, ainsi que les pédales.',
+		'show character p thinking on right with fadeIn',
 		'p D\'accord, je me rends compte quand même de l\'investissement que cela représente.',
 		'm Je vous laisse me suivre..',
 		'jump Scene8',
@@ -497,13 +505,14 @@ monogatari.script ({
 
 	'Scene8': [
 		'show scene selle with fadeIn',
-		'show character p doubting on left',
-		'show character m happy on right',
+		'show character p normal on right',
+		'show character m normal on left',
 		'm Pour la selle, comme pour le cintre, c\'est une question de confort et d\'esthétique. Je vous présente ici trois selles de bonne qualité.',
 		'show image selleFizik on left with fadeIn',
 		'show image selleItalia on center with fadeIn',
 		'show image sellePro on right with fadeIn',
 		'm Laquelle vous plairait ?',
+		'show character p unpleased on right with fadeIn',
 		'p Uuumm...',
 		{
 			'Choice': {
@@ -549,10 +558,11 @@ monogatari.script ({
 
 	'Scene9': [
 		'show scene shop with fadeIn',
-		'show character p doubting on left',
-		'show character m happy on right',
+		'show character p interested on right',
+		'show character m worried on left',
 		'm Concernant le pédalier, je vous propose les trois marques habituelles qui garantissent un très bon rapport qualité/prix.',
 		'show image pedalierCampagnolo on left with fadeIn',
+		'show character m normal on left with fadeIn',
 		'm Le pédalier de la marque Campagnolo.',
 		'show image pedalierShimano on center with fadeIn',
 		'm Le pédalier de la marque Shimano.',
@@ -601,14 +611,14 @@ monogatari.script ({
 		'centered Mais à ta plus grande surprise, Marie t\'annonce ensuite que... ',
 		'm Ha oui, j\'ai oublié de vous préciser qu\'avec le pédalier, il faut aussi prévoir le coût de la cassette adaptée (CHF 227), du dérailleur arrière et avant (CHF 486,35 + CHF 294,8), ainsi que de la chaîne de 12V (CHF 53,80).',
 		'm Cela ajoute donc CHF 1\'464,85 à vos dépenses actuelles.',
-		'show character p shocked on left', 
+		'show character p surprised on right', 
 		'jump Scene10',
 	],
 
 	'Scene10': [
 		'show scene shop with fadeIn',
-		'show character p doubting on left',
-		'show character m happy on right',
+		'show character p doubting on right',
+		'show character m normal on left',
 		'show image calesWahoo with fadeIn on left',
 		'm Il y a d\'abord ces pédales de la marque Wahoo, qui sont de très bonne qualité et très au gôut du jour.',
 		'show image calesWahoo2 on center with fadeIn',
@@ -656,14 +666,14 @@ monogatari.script ({
 		'hide image calesWahoo with fadeIn',
 		'hide image calesWahoo2 with fadeIn',
 		'hide image calesGarmin with fadeIn',
-		'centered Tu as depensé CHF {{lastExpense}} pour ton pédales !',
+		'centered Tu as depensé CHF {{lastExpense}} pour tes pédales !',
 		'jump Scene11',
 	],
 
 	'Scene11': [
 		'show scene shop with fadeIn',
-		'show character p doubting on left',
-		'show character m happy on right',
+		'show character p unpleased on right',
+		'show character m laughing on left',
 		'm Pour finir, nous allons décider les roues que vous souhaitez installer.',
 		'show image rouesDtSwiss with fadeIn',
 		'm Les roues DT Swiss sont très réputées et considérées comme du haut de gamme. Et pour le prix de CHF 2\'948, c\'est le cas de le dire !',
@@ -716,8 +726,8 @@ monogatari.script ({
 
 	'Scene12': [
 		'show scene store',
-		'show character m happy on right',
-		'show character p happy on left',
+		'show character m smiling on left',
+		'show character p happy on right',
 		'm Félicitations, nous y sommes arrivés ! Vous avez monté votre vélo de A à Z.',
 		'm Passons à la caisse pendant que le méchanicien commence à travailler sur votre vélo.',
 		'show scene black with fadeIn',
@@ -730,7 +740,7 @@ monogatari.script ({
 	'Ending': [
 		'play music end on loop with volume 50',
 		'show scene bikeFinal',
-		'show character p happy with fadeIn',
+		'show character p wink on right with fadeIn',
 		'centered Bravo, tu as réussi à respecter ton budget et tu es repart avec ton propre vélo.',
 		'end',
 	],

@@ -39,8 +39,8 @@
 /* Style of the title */
 [id="titre"] {
 	color: white;
-	-webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
+	stroke-width: 2px;
+	-webkit-text-stroke-color: white;
 };
 
 
