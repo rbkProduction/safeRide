@@ -664,57 +664,62 @@ monogatari.script ({
 		'show scene shop with fadeIn',
 		'show character p doubting on left',
 		'show character m happy on right',
-		'm Il y a d\'abord ces pédales de la marque Wahoo, qui sont de très bonne qualité et très au gôut du jour.',
-		'show image cales_wahoo2 on center with fadeIn',
-		'm Ensuite la même marque propose des pédales avec capteur de puissance intégré.',
-		'm Cette fonctionnalité permet aux cyclistes d\'avoir un meilleur suivi de leurs dépenses caloriques.',
-		'show image cales_garmin with fadeIn on right',
-		'm Enfin, les cales Garmin sont un très bon compromis entre les deux autres, car elles proposent aussi un système de capteur de puissance, mais sur qu\'une seule pédale.',
-		'm Certes, il y aura légèrement moins de précisions au niveau de la puissance, mais vous aurez la fonctionnalité ainsi qu\'un prix plus abordable.',
-		'p Je pense que je vais prendre... ',
+		'm Pour finir, nous allons décider les roues que vous souhaitez installer.',
+		'show image rouesDtSwiss with fadeIn',
+		'm Les roues DT Swiss sont très réputées et considérées comme du haut de gamme. Et pour le prix de CHF 2\'948, c\'est le cas de le dire !',
+		'show image rouesZipp on center with fadeIn',
+		'm Ensuite la marque Zipp est aussi réputé et plus abordable.',
+		'show image rouesSpecialized with fadeIn on right',
+		'm Puis, les roues specialized font aussi très bien l\'affaire pour leur prix !',
+		'm Quelles roues souhaitez-vous ?',
 		{
 			'Choice': {
-				'cales_wahoo': {
-					// https://fr-eu.wahoofitness.com/devices/pedals/speedplay/speedplay-nano-buy
-					'Text': 'Cales Wahoo Speedplay - CHF 449.90',
+				'rouesDtSwiss': {
+					// https://www.dtswiss.com/fr/roues/roues-route/performance/prc-1100-dicut-mon-chasseral
+					'Text': 'Roues DT Swiss - CHF 2948',
 					'Class': 'choicesButtonsLeft',
 					'Clickable': function(){
 						return this.storage().overBudget
 					},
-					'onChosen': function(){addExpense(449.90)},
-					'onRevert': function(){substractExpense(449.90)},
+					'onChosen': function(){addExpense(2948)},
+					'onRevert': function(){substractExpense(2948)},
 				},
-				'cales_wahoo2': {
-					// https://fr-eu.wahoofitness.com/devices/pedals/powrlink/powrlink-zero-dual-power-pedal-buy
-					'Text': 'Cales Wahoo Speedplay PowerMeter - CHF 999.90',
+				'rouesZipp': {
+					// https://www.dtswiss.com/fr/roues/roues-route/performance/prc-1100-dicut-mon-chasseral
+					'Text': 'Roues Zipp - CHF 1118',
 					'Class': 'choicesButtonsCenter',
 					'Clickable': function(){
 						return this.storage().overBudget
 					},
-					'onChosen': function(){addExpense(999.90)},
-					'onRevert': function(){substractExpense(999.90)},
+					'onChosen': function(){addExpense(1118)},
+					'onRevert': function(){substractExpense(1118)},
 				},
-				'cales_garmin': {
-					// https://www.garmin.com/fr-CH/p/658661/pn/010-02388-03
-					'Text': 'Cales Garmin Rally RS100  - CHF 499.90',
+				'rouesSpecialized': {
+					// https://www.specialized.com/ch/fr/roval-alpinist-cl-ii/p/205468?color=330010-205468
+					'Text': 'Roues Specialized  - CHF 850',
 					'Class': 'choicesButtonsRight',
 					'Clickable': function(){
 						return this.storage().overBudget
 					},
-					'onChosen': function(){addExpense(499.90)},
-					'onRevert': function(){substractExpense(499.90)},
+					'onChosen': function(){addExpense(850)},
+					'onRevert': function(){substractExpense(850)},
 				},
 			}
 		},
 		'play sound cash',
-		'hide image cales_wahoo with fadeIn',
-		'hide image cales_wahoo2 with fadeIn',
-		'hide image cales_garmin with fadeIn',
-		'centered Tu as depensé CHF {{lastExpense}} pour ton pédales !',
-		'jump Scene11',
+		'hide image rouesDtSwiss with fadeIn',
+		'hide image rouesZipp with fadeIn',
+		'hide image rouesSpecialized with fadeIn',
+		'centered Tu as depensé CHF {{lastExpense}} pour tes roues !',
+		'jump Scene12',
 	],
 
-	'Scene?': [
+	'Scene12': [
+		'show scene store',
+		'show character m happy on right',
+		'show character p happy on left',
+		'm Félicitations, nous y sommes arrivés ! Vous avez monté votre vélo de A à Z.',
+		'm Passons à la caisse pendant que le méchanicien commence à travailler sur votre vélo.',
 		'show scene black with fadeIn',
 		'centered Le méchanicien assemble ton vélo...',
 		'play sound tools with volume 80 fade 20',
@@ -726,6 +731,7 @@ monogatari.script ({
 		'play music end on loop with volume 50',
 		'show scene bikeFinal',
 		'show character p happy with fadeIn',
+		'centered Bravo, tu as réussi à respecter ton budget et tu es repart avec ton propre vélo.',
 		'end',
 	],
 
