@@ -333,8 +333,8 @@ monogatari.script ({
 					'Clickable': function(){
 						return this.storage().overBudget
 					},
-					'onChosen': function(){addExpense(76.99)},
-					'onRevert': function(){substractExpense(76.99)},
+					'onChosen': function(){addExpense(76,99)},
+					'onRevert': function(){substractExpense(76,99)},
 				},
 				'cintreBontrager': {
 					// https://www.trekbikes.com/ch/fr_CH/equipement/composants-pour-vélo/cintres-de-vélo/cintres-de-vélos-route/cintre-route-bontrager-pro-vr-c/p/32645/?colorCode=black
@@ -410,8 +410,8 @@ monogatari.script ({
 					'Clickable': function(){
 						return this.storage().overBudget
 					},
-					'onChosen': function(){addExpense(175.9)},
-					'onRevert': function(){substractExpense(175.9)},
+					'onChosen': function(){addExpense(175,9)},
+					'onRevert': function(){substractExpense(175,9)},
 				}
 			}
 		},
@@ -466,8 +466,8 @@ monogatari.script ({
 					'Clickable': function(){
 						return this.storage().overBudget
 					},
-					'onChosen': function(){addExpense(314.90)},
-					'onRevert': function(){substractExpense(314.90)},
+					'onChosen': function(){addExpense(314,90)},
+					'onRevert': function(){substractExpense(314,90)},
 				},
 				'sellePro': {
 					// https://www.selleitalia.com/slr-boost-kit-carbonio/?_gl=1*134esjr*_up*MQ..*_ga*MTk2ODM1Mjc3Ni4xNzE1MDE3NTUz*_ga_4KB6M1439M*MTcxNTAxNzU1Mi4xLjAuMTcxNTAxNzU3Ni4wLjAuMA..
@@ -515,8 +515,8 @@ monogatari.script ({
 					'Clickable': function(){
 						return this.storage().overBudget
 					},
-					'onChosen': function(){addExpense(602.30)},
-					'onRevert': function(){substractExpense(602.30)},
+					'onChosen': function(){addExpense(602,30)},
+					'onRevert': function(){substractExpense(602,30)},
 				},
 				'pedalierShimano': {
 					// https://bike.shimano.com/fr-FR/product/component/dura-ace-r9200/FC-R9200.html
@@ -574,8 +574,8 @@ monogatari.script ({
 					'Clickable': function(){
 						return this.storage().overBudget
 					},
-					'onChosen': function(){addExpense(449.90)},
-					'onRevert': function(){substractExpense(449.90)},
+					'onChosen': function(){addExpense(449,90)},
+					'onRevert': function(){substractExpense(449,90)},
 				},
 				'calesWahoo2': {
 					// https://fr-eu.wahoofitness.com/devices/pedals/powrlink/powrlink-zero-dual-power-pedal-buy
@@ -584,8 +584,8 @@ monogatari.script ({
 					'Clickable': function(){
 						return this.storage().overBudget
 					},
-					'onChosen': function(){addExpense(999.90)},
-					'onRevert': function(){substractExpense(999.90)},
+					'onChosen': function(){addExpense(999,90)},
+					'onRevert': function(){substractExpense(999,90)},
 				},
 				'calesGarmin': {
 					// https://www.garmin.com/fr-CH/p/658661/pn/010-02388-03
@@ -594,8 +594,8 @@ monogatari.script ({
 					'Clickable': function(){
 						return this.storage().overBudget
 					},
-					'onChosen': function(){addExpense(499.90)},
-					'onRevert': function(){substractExpense(499.90)},
+					'onChosen': function(){addExpense(499,90)},
+					'onRevert': function(){substractExpense(499,90)},
 				},
 			}
 		},
@@ -668,9 +668,9 @@ monogatari.script ({
 		'm Félicitations, nous y sommes arrivés ! Vous avez monté votre vélo de A à Z.',
 		'stop music game',
 		'm Passons à la caisse pendant que le méchanicien commence à travailler sur votre vélo.',
+		'play sound tools',
 		'show scene black with fadeIn',
 		'centered Le méchanicien assemble ton vélo...',
-		'play sound tools with volume 80',
 		'jump Ending',
 	],
 	
