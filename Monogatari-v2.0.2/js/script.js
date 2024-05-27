@@ -57,9 +57,9 @@ monogatari.assets ('gallery', {
 
 // Define the music used in the game.
 monogatari.assets ('music', {
-	intro: 'George\'s Lament - Go By Ocean _ Ryan McCaffrey.mp3',
-	game: 'Time Slips By - Go By Ocean _ Ryan McCaffrey.mp3',
-	end: 'In Dreams - Lish Grooves.mp3',
+	intro: 'intro/George\'s Lament - Go By Ocean _ Ryan McCaffrey.mp3',
+	game: 'game/Time Slips By - Go By Ocean _ Ryan McCaffrey.mp3',
+	end: 'end/In Dreams - Lish Grooves.mp3',
 });
 
 // Define the voice files used in the game.
@@ -614,7 +614,7 @@ monogatari.script ({
 		'show image calesWahoo2 on center with fadeIn',
 		'm Ensuite la même marque propose des pédales avec capteur de puissance intégré.',
 		'm Cette fonctionnalité permet aux cyclistes d\'avoir un meilleur suivi de leurs dépenses caloriques.',
-		'show image cales_garmin with fadeIn on right',
+		'show image calesGarmin with fadeIn on right',
 		'm Enfin, les cales Garmin sont un très bon compromis entre les deux autres, car elles proposent aussi un système de capteur de puissance, mais sur qu\'une seule pédale.',
 		'm Certes, il y aura légèrement moins de précisions au niveau de la puissance, mais vous aurez la fonctionnalité ainsi qu\'un prix plus abordable.',
 		'p Je pense que je vais prendre... ',
@@ -640,7 +640,7 @@ monogatari.script ({
 					'onChosen': function(){addExpense(999.90)},
 					'onRevert': function(){substractExpense(999.90)},
 				},
-				'cales_garmin': {
+				'calesGarmin': {
 					// https://www.garmin.com/fr-CH/p/658661/pn/010-02388-03
 					'Text': 'Cales Garmin Rally RS100  - CHF 499.90',
 					'Class': 'choicesButtonsRight',
@@ -655,7 +655,7 @@ monogatari.script ({
 		'play sound cash',
 		'hide image calesWahoo with fadeIn',
 		'hide image calesWahoo2 with fadeIn',
-		'hide image cales_garmin with fadeIn',
+		'hide image calesGarmin with fadeIn',
 		'centered Tu as depensé CHF {{lastExpense}} pour ton pédales !',
 		'jump Scene11',
 	],
