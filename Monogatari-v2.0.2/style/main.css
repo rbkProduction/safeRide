@@ -38,9 +38,8 @@
 
 /* Style of the title */
 [id="titre"] {
-	color: white;
+	stroke: white;
 	stroke-width: 2px;
-	-webkit-text-stroke-color: white;
 };
 
 
@@ -188,7 +187,7 @@ main-menu{
 
 /* Text Box styling */
 [data-component="text-box"] {
-	opacity: 70%;
+	opacity: 85%;
 	width: auto;
 	height: 50%;
 	margin: 0;
@@ -202,6 +201,7 @@ main-menu{
 /* Character Name Style */
 [data-ui="who"] {
 	font-size: 150%;
+	opacity: 100%;
 }
 
 /* Style for Centered Text */
@@ -214,6 +214,8 @@ main-menu{
 
 /* Character Images Styles */
 [data-screen="game"] [data-character] {
+	left: 350px;
+	right: 350px;
 	bottom: 0%;
 	max-width: 100%;
     height: auto;

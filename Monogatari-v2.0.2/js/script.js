@@ -120,19 +120,18 @@ monogatari.assets ('scenes', {
 monogatari.characters ({
 	'm': {
 		name: 'Marie',
-		color: 'orange',
+		color: 'red',
 		directory: 'marie',
 		sprites: {
-			angry: 'angry.png',
-			bored: 'bored.png',
-			crying: 'crying.png',
+			back: 'back.png',
+			doubting: 'doubting.png',
+			front: 'front.png',
 			laughing: 'laughing.png',
-			normal: 'normal.png',
-			sad: 'sad.png',
+			leftSide: 'leftSide.png',
 			smiling: 'smiling.png',
+			shocked: 'shocked.png',
 			surprised: 'surprised.png',
-			upset: 'upset.png',
-			worried: 'worried.png',
+			thirdSide: 'thirdSide.png',
 		},
 	},
 	'p': {
@@ -140,17 +139,16 @@ monogatari.characters ({
 		color: 'green',
 		directory: 'player',
 		sprites: {
-			bored: 'bored.png',
+			front: 'front.png',
 			doubting: 'doubting.png',
-			embarassed: 'embarassed.png',
+			back: 'back.png',
 			interested: 'interested.png',
-			normal: 'normal.png',
-			proud: 'proud.png',
+			laughing: 'laughing.png',
+			rightSide: 'rightSide.png',
+			shocked: 'shocked.png',
 			smiling: 'smiling.png',
 			surprised: 'surprised.png',
-			thinking: 'thiking.png',
-			unpleased: 'unpleased.png',
-			wink: 'wink.png',
+			thirdSide: 'thirdSide.png',
 		},
 	},
 });
@@ -233,13 +231,12 @@ monogatari.script ({
 
 	'Scene1': [
 		'show scene shop with fadeIn',
-		'show character p normal on right with fadeIn',
-		'show character m normal on left with fadeIn',
+		'show character p rightSide on left with fadeIn',
+		'show character m leftSide on right with fadeIn',
 		'm Bonjour. Bienvenue chez Custom Ride ! Je suis Marie, comment puis-je vous aider ?',
-		'show character m laughing on left',
-		'show character p embarassed on right',
+		'show character m smiling on right',
+		'show character p front on left',
 		'p Bonjour. Je suis à la recherche d\'un nouveau vélo de course et j\'aimerais assembler le mien pièce par pièce. Pouvez-vous m\'aider à choisir les composants ?',
-		'show character m normal on left',
 		'm Bien sûr ! Nous allons vous faire un montage à la carte.',
 		'p Exactement.',
 		'm Super, je vous laisse me suivre. On va commencer par choisir un cadre.',
@@ -251,8 +248,8 @@ monogatari.script ({
 		'show scene cadre with fadeIn',
 		'stop music intro',
 		'play music game on loop with volume 30',
-		'show character p normal on right with fadeIn',
-		'show character m normal on left with fadeIn',
+		'show character p smiling on left with fadeIn',
+		'show character m smiling on right with fadeIn',
 		'm Alors, voilà. Il y a trois options principales qui s\'offrent à vous pour le cadre. Les cadres en aluminium, les cadres en carbone et ceux en acier.',
 		'show image cadreAcier on left with fadeIn',
 		'm Les cadres en acier sont très résistants et comfortables. En revanche, il faut les entretenir plus fréquemment vu que le risque de rouille est élevé. Et ils sont également assez lourds.',
@@ -296,8 +293,8 @@ monogatari.script ({
 
 	'Scene3': [
 		'show scene shop with fadeIn',
-		'show character p interested on right with fadeIn',
-		'show character m smiling on left with fadeIn',
+		'show character p interested on left with fadeIn',
+		'show character m front on right with fadeIn',
 		'm Maintenant que nous avons la base du vélo. Voyons quel cintre vous souhaitez pour votre guidon.',
 		'jump Scene4',
 	],
@@ -305,21 +302,21 @@ monogatari.script ({
 
 	'Scene4': [
 		'show scene shop',
-		'show character m bored on left',
-		'show character p normal on right',
+		'show character m front on right',
+		'show character p smiling on left',
 		'm Les cintres pour vélo de courses permettent une variation de placement des mains.',
 		'm Le cycliste peut les poser soit sur le dessus, soit vers les cocottes du bas pour une position plus aggressive.',
-		'show character p bored on right',
+		'show character p front on left',
 		'm Votre choix de cintre sera donc plutôt orienté esthétique et confort.',
 		'show image cintreBMC on left with fadeIn',
 		'show image cintreBontrager on center with fadeIn',
 		'show image cintreSyncros on right',
-		'show character m normal on left',
+		'show character m smiling on right',
 		'm Lequel vous fait de l\'œil?',
-		'show character p thinking on right',
+		'show character p doubting on left',
 		{
 			'Choice': {
-				'Cintre 1': {
+				'cintreBMC': {
 					// https://bmc-switzerland.com/fr/collections/components/products/handlebar-ics-aero-bike-components-bmc-22-10801-005
 					'Text': 'Cintre BMC - CHF 349',
 					'Class': 'choicesButtonsLeft',
@@ -329,7 +326,7 @@ monogatari.script ({
 					'onChosen': function(){addExpense(349)},
 					'onRevert': function(){substractExpense(349)},
 				},
-				'Cintre 2': {
+				'cintreSyncros': {
 					// https://www.syncros.com/ch/fr/product/syncros-creston-1-5-compact-handlebar
 					'Text': 'Cintre Syncros - CHF 76.99',
 					'Class': 'choicesButtonsCenter',
@@ -339,7 +336,7 @@ monogatari.script ({
 					'onChosen': function(){addExpense(76.99)},
 					'onRevert': function(){substractExpense(76.99)},
 				},
-				'Cintre 3': {
+				'cintreBontrager': {
 					// https://www.trekbikes.com/ch/fr_CH/equipement/composants-pour-vélo/cintres-de-vélo/cintres-de-vélos-route/cintre-route-bontrager-pro-vr-c/p/32645/?colorCode=black
 					'Text': 'Cintre Bontrager - CHF 259',
 					'Class': 'choicesButtonsRight',
@@ -353,29 +350,29 @@ monogatari.script ({
 		},
 		'play sound cash',
 		'hide image cintreBMC with fadeIn',
-		'hide image cintreBontrager on center with fadeIn',
-		'hide image cintreSyncros on right with fadeIn',
+		'hide image cintreBontrager with fadeIn',
+		'hide image cintreSyncros with fadeIn',
 		'centered Tu as depensé CHF {{lastExpense}} pour le cintre.',
-		'show character p proud on left',
+		'show character p surprised on left',
 		'jump Scene5',
 	],
 
 	'Scene5': [
 		'show scene shop with fadeIn',
-		'show character p normal on right with fadeIn',
-		'show character m surprised on left with fadeIn',
+		'show character p smiling on left with fadeIn',
+		'show character m surprised on right with fadeIn',
 		'm Alors, concernant les freins, vous avez le choix entre des freins mécaniques ou des freins hydrauliques.',
 		'm Les freins mécaniques fonctionnent avec un système de patins qui vont venir faire le frottement avec la jante de la roue lorsque vous freinez. Il s\'agit d\'un étrier que l\'on va venir fixer à l\'avant et à l\'arrière des roues.',
 		'show image freinsShimano on left with fadeIn',
 		'show image freinsSram on center with fadeIn',
-		'm Shimano est SRAM proprose tous deux un très bon système, abordable et amplement efficace.',
+		'm Shimano est SRAM proposent tous deux un très bon système, abordable et amplement efficace.',
 		'show image freinsDisque on right with fadeIn',
 		'm Les freins hydrauliques fonctionnent à l\'aide de disques et représentent un système plus coûteux et plus haut de gamme.',
 		'm On place un disque à l\'avant et à l\'arrière qui sera aussi bloqué par des étriers. Mais ceux-ci sont placés au niveau de l\'axe de la roue et vous aurez moins de câblage apparents sur le cadre du vélo.',
 		'm Ils nécessitent également de l\'huile qui l\'on va introduire dans les manettes de freins, d\'où le terme « hydraulique ».',
 		'p Et au niveau ensuite de l\'entretien, y-a-t-il une différence entre les deux ?',
 		'm Légèrement, oui.',
-		'show character p unpleased on right with fadeIn',
+		'show character p shocked on left with fadeIn',
 		'm Les freins à disque vont avoir besoin d\'une purge du liquide une à doix fois par an selon votre fréquence d\'utilisation. Aussi, de temps en temps, quand vous lavez votre vélo par exemple, vous devrez juste mettre un peu de produit dégraissant sur les disques et essuyez avec un chiffon propre.',
 		'm Mais attention, surtout ne touchez jamais les disques avec vos mains, qui sont par défaut plutôt grasses. Un vieux t-shirt que vous déchirez en morceaux fera très bien l\'affaire.',
 		'p Et les freins à patins ?',
@@ -426,93 +423,29 @@ monogatari.script ({
 		'jump Scene6',
 	],
 
-
 	'Scene6': [
 		'show scene shop',
-		'show character p smiling on right with fadeIn',
-		'show character m normal on left with fadeIn',
-		'm Avec les étriers de frein, il vous faut les manettes qu\'on va venir fixer sur le guidon. Les manettes doivent aussi être compatibles avec la transmission que vous allez choisir.',
-		'p Attendez, la transmission ? ',
-		'show character m bored on left with fadeIn',
-		'm Oui, c\' est tout le système qui va vous permettre de changer de vitesses.',
-		'm À ce stade, vous devez choisir sur quelle système de transmission vous aller vous orienter.',
-		'show character m normal on left with fadeIn',
-		'm Les trois plus grandes marques sont Shimano, SRAM et Campagnolo.',
-		'm SRAM et Campagnolo sont de très très bonnes marques, mais si je peux me permettre, je vous recommande Shimano.',
-		'm Avec Shimano, vous aurez une aisance à entretenir les pièces puisque c\'est une marque qui est très répandue. En plus, Shimano est très qualitatif et fonctionne très facilement.',
-		'm Dites-moi combien de vitesses vous souhaiteriez et ensuite je serais en mesure de vous intégrer les manettes compatibles.',
-		'p J\'y ai déjà réfléchi et j\'hésitais entre du 11 ou du 12 vitesses.',
-		'm Aaaah, monsieur connaît à ce que je vois ! Écoutez, effectivement je pense qu\'on peut déjà oublier le 10 vitesses si vous roulez régulièrement.',
-		'm Ensuite, à mon avis, vous allez prendre du double non ?',
-		'p Comment ça du double ?',
-		'm Du double vitesse. C\'est-à-dire deux plateaux avant. Enfait, les pignons arrières vont composer vos 11 ou vos 12 vitesses. Et pour l\'avant, vous avez le choix entre 1 ou 2 plateaux.',
-		'm Si vous prenez deux plateaux - ce qui est le plus répandu chez tous les coureurs professionnels - vous débloquerez plus de vitesses et vous pourrez adapter au mieux votre moulinage en fonction du dénivelé.',
-		'p Alors je pense que je vais choisir...',
-		{
-			'Choice': {
-				'1x 11S': {
-					'Text': '1x 11S - CHF 729.99',
-					'Clickable': function(){
-						return this.storage().overBudget
-					},
-					'onChosen': function(){addExpense(729.99)},
-					'onRevert': function(){substractExpense(729.99)},
-				},
-				'2x 11S': {
-					'Text': '2x 11S - CHF 729.99',
-					'Clickable': function(){
-						return this.storage().overBudget
-					},
-					'onChosen': function(){addExpense(729.99)},
-					'onRevert': function(){substractExpense(729.99)},
-				},
-				'1x 12S': {
-					'Text': '1x 12S - CHF 729.99',
-					'Clickable': function(){
-						return this.storage().overBudget
-					},
-					'onChosen': function(){addExpense(729.99)},
-					'onRevert': function(){substractExpense(729.99)},
-				},
-				'2x 12S': {
-					'Text': '2x 12S - CHF 729.99',
-					'Clickable': function(){
-						return this.storage().overBudget
-					},
-					'onChosen': function(){addExpense(729.99)},
-					'onRevert': function(){substractExpense(729.99)},
-				},
-			},
-		},
-		'play sound cash',
-		'centered Tu as depensé CHF {{lastExpense}} pour les manettes de freins.',
-		'jump Scene7',
-	
-	],
-
-	'Scene7': [
-		'show scene shop',
-		'show character p bored on left',
-		'show character m smiling on left',
+		'show character p front on left',
+		'show character m thirdSide on right',
 		'm Passons mainteant au choix de la selle.',
 		'p Hum, excusez-moi, il reste encore beaucoup de composants à acheter pour mon vélo ?',
 		'm Non, rassurez-vous, nous sommes presques au bout. Il nous reste encore la selle, le pédalier, les deux dérailleurs, les roues et les pneus, ainsi que les pédales.',
-		'show character p thinking on right with fadeIn',
+		'show character p interested on left with fadeIn',
 		'p D\'accord, je me rends compte quand même de l\'investissement que cela représente.',
 		'm Je vous laisse me suivre..',
-		'jump Scene8',
+		'jump Scene7',
 	],
 
-	'Scene8': [
-		'show scene selle with fadeIn',
-		'show character p normal on right',
-		'show character m normal on left',
+	'Scene7': [
+		'show scene shop with fadeIn',
+		'show character p smiling on left',
+		'show character m smiling on right',
 		'm Pour la selle, comme pour le cintre, c\'est une question de confort et d\'esthétique. Je vous présente ici trois selles de bonne qualité.',
 		'show image selleFizik on left with fadeIn',
 		'show image selleItalia on center with fadeIn',
 		'show image sellePro on right with fadeIn',
 		'm Laquelle vous plairait ?',
-		'show character p unpleased on right with fadeIn',
+		'show character p doubting on left with fadeIn',
 		'p Uuumm...',
 		{
 			'Choice': {
@@ -549,20 +482,24 @@ monogatari.script ({
 			}
 		},
 		'play sound cash',
-		'hide image selleFizik with fadeIn',
-		'hide image selleItalia with fadeIn',
-		'hide image sellePro with fadeIn',
+		'hide image selleFizik',
+		'hide image selleItalia',
+		'hide image sellePro',
 		'centered Tu as depensé CHF {{lastExpense}} pour la selle.',
-		'jump Scene9',
+		'jump Scene8',
 	],
 
-	'Scene9': [
+	'Scene8': [
 		'show scene shop with fadeIn',
-		'show character p interested on right',
-		'show character m worried on left',
-		'm Concernant le pédalier, je vous propose les trois marques habituelles qui garantissent un très bon rapport qualité/prix.',
+		'show character p interested on left',
+		'show character m leftSide on right',
+		'm Concernant le pédalier, les trois plus grandes marques sont Shimano, SRAM et Campagnolo.',
+		'm SRAM et Campagnolo sont de très très bonnes marques, mais si je peux me permettre, je vous recommande Shimano.',
+		'm Avec Shimano, vous aurez une aisance à entretenir les pièces puisque c\'est une marque qui est très répandue. En plus, Shimano est très qualitatif et fonctionne très facilement.',
+		'p J\'y ai déjà réfléchi et effectivement je voulais partir sur du Shimano. Je me suis déjà renseigné sur la marque.',
+		'm Aaaah, monsieur connaît à ce que je vois !',
 		'show image pedalierCampagnolo on left with fadeIn',
-		'show character m normal on left with fadeIn',
+		'show character m smiling on right with fadeIn',
 		'm Le pédalier de la marque Campagnolo.',
 		'show image pedalierShimano on center with fadeIn',
 		'm Le pédalier de la marque Shimano.',
@@ -604,23 +541,23 @@ monogatari.script ({
 			}
 		},
 		'play sound cash',
-		'hide image pedalierCampagnolo with fadeIn',
-		'hide image pedalierShimano with fadeIn',
-		'hide image pedalierSram with fadeIn',
+		'hide image pedalierCampagnolo',
+		'hide image pedalierShimano',
+		'hide image pedalierSram',
 		'centered Tu as depensé CHF {{lastExpense}} pour ton nouveau pédalier !',
 		'centered Mais à ta plus grande surprise, Marie t\'annonce ensuite que... ',
 		'm Ha oui, j\'ai oublié de vous préciser qu\'avec le pédalier, il faut aussi prévoir le coût de la cassette adaptée (CHF 227), du dérailleur arrière et avant (CHF 486,35 + CHF 294,8), ainsi que de la chaîne de 12V (CHF 53,80).',
 		'm Cela ajoute donc CHF 1\'464,85 à vos dépenses actuelles.',
-		'show character p surprised on right', 
-		'jump Scene10',
+		'show character p surprised on left', 
+		'jump Scene9',
 	],
 
-	'Scene10': [
+	'Scene9': [
 		'show scene shop with fadeIn',
-		'show character p doubting on right',
-		'show character m normal on left',
+		'show character p doubting on left',
+		'show character m front on right',
 		'show image calesWahoo with fadeIn on left',
-		'm Il y a d\'abord ces pédales de la marque Wahoo, qui sont de très bonne qualité et très au gôut du jour.',
+		'm Il y a d\'abord ces pédales de la marque Wahoo, qui sont de très bonne qualité et au goût du jour.',
 		'show image calesWahoo2 on center with fadeIn',
 		'm Ensuite la même marque propose des pédales avec capteur de puissance intégré.',
 		'm Cette fonctionnalité permet aux cyclistes d\'avoir un meilleur suivi de leurs dépenses caloriques.',
@@ -667,15 +604,15 @@ monogatari.script ({
 		'hide image calesWahoo2 with fadeIn',
 		'hide image calesGarmin with fadeIn',
 		'centered Tu as depensé CHF {{lastExpense}} pour tes pédales !',
-		'jump Scene11',
+		'jump Scene10',
 	],
 
-	'Scene11': [
+	'Scene10': [
 		'show scene shop with fadeIn',
-		'show character p unpleased on right',
-		'show character m laughing on left',
+		'show character p shocked on left',
+		'show character m laughing on right',
 		'm Pour finir, nous allons décider les roues que vous souhaitez installer.',
-		'show image rouesDtSwiss with fadeIn',
+		'show image rouesDtSwiss on left with fadeIn',
 		'm Les roues DT Swiss sont très réputées et considérées comme du haut de gamme. Et pour le prix de CHF 2\'948, c\'est le cas de le dire !',
 		'show image rouesZipp on center with fadeIn',
 		'm Ensuite la marque Zipp est aussi réputé et plus abordable.',
@@ -721,18 +658,19 @@ monogatari.script ({
 		'hide image rouesZipp with fadeIn',
 		'hide image rouesSpecialized with fadeIn',
 		'centered Tu as depensé CHF {{lastExpense}} pour tes roues !',
-		'jump Scene12',
+		'jump Scene11',
 	],
 
-	'Scene12': [
+	'Scene11': [
 		'show scene store',
-		'show character m smiling on left',
-		'show character p happy on right',
+		'show character m smiling on right',
+		'show character p laughing on left',
 		'm Félicitations, nous y sommes arrivés ! Vous avez monté votre vélo de A à Z.',
+		'stop music game',
 		'm Passons à la caisse pendant que le méchanicien commence à travailler sur votre vélo.',
 		'show scene black with fadeIn',
 		'centered Le méchanicien assemble ton vélo...',
-		'play sound tools with volume 80 fade 20',
+		'play sound tools with volume 80',
 		'jump Ending',
 	],
 	
@@ -740,7 +678,7 @@ monogatari.script ({
 	'Ending': [
 		'play music end on loop with volume 50',
 		'show scene bikeFinal',
-		'show character p wink on right with fadeIn',
+		'show character p smiling on left with fadeIn',
 		'centered Bravo, tu as réussi à respecter ton budget et tu es repart avec ton propre vélo.',
 		'end',
 	],
