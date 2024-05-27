@@ -37,7 +37,7 @@
 };
 
 /* Style of the title */
-h1 {
+[id="titre"] {
 	color: white;
 	-webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;

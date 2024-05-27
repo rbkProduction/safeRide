@@ -57,8 +57,8 @@ monogatari.assets ('gallery', {
 
 // Define the music used in the game.
 monogatari.assets ('music', {
-	intro: 'intro/George\'s Lament - Go By Ocean _ Ryan McCaffrey.mp3',
-	game: 'game/Time Slips By - Go By Ocean _ Ryan McCaffrey.mp3',
+	intro: 'intro/Georges Lament_Ryan McCaffrey.mp3',
+	game: 'game/Time Slips By_Ryan McCaffrey.mp3',
 	end: 'end/In Dreams - Lish Grooves.mp3',
 });
 
@@ -96,9 +96,9 @@ monogatari.assets ('images', {
 	'pedalierCampagnolo': 'pedalier/pedalierCampagnolo.svg',
 	'pedalierShimano': 'pedalier/pedalierShimano.svg',
 	'pedalierSram': 'pedalier/pedalierSram.svg',
-	'calesGarmin': 'cales_garminPuissance1.svg',
-	'calesWahoo': 'cales_wahoo.svg',
-	'calesWahoo2': 'cales_wahooPuissance2.svg',
+	'calesGarmin': 'pedales/cales_garminPuissance1.svg',
+	'calesWahoo': 'pedales/cales_wahoo.svg',
+	'calesWahoo2': 'pedales/cales_wahooPuissance2.svg',
 	'rouesDtSwiss': 'roues/rouesDtswiss.svg',
 	'rouesSpecialized': 'roues/rouesSpecialized.svg',
 	'rouesZipp': 'roues/rouesZipp.svg',
@@ -123,7 +123,7 @@ monogatari.characters ({
 		color: 'orange',
 		directory: 'marie',
 		sprites: {
-			thirdSide: '3-4.png',
+			thirdSide: 'thirdSide.png',
 			back: 'back.png',
 			doubting: 'doubting.png',
 			front: 'front.png',
@@ -139,7 +139,7 @@ monogatari.characters ({
 		color: 'green',
 		directory: 'player',
 		sprites: {
-			thirdSide: '3-4.png',
+			thirdSide: 'thirdSide.png',
 			back: 'back.png',
 			doubting: 'doubting.png',
 			front: 'front.png',
