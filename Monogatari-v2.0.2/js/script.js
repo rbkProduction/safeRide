@@ -99,7 +99,7 @@ monogatari.assets ('images', {
 	'calesGarmin': 'cales_garminPuissance1.svg',
 	'calesWahoo': 'cales_wahoo.svg',
 	'calesWahoo2': 'cales_wahooPuissance2.svg',
-	'rouesDtswiss': 'roues/rouesDtswiss.svg',
+	'rouesDtSwiss': 'roues/rouesDtswiss.svg',
 	'rouesSpecialized': 'roues/rouesSpecialized.svg',
 	'rouesZipp': 'roues/rouesZipp.svg',
 });
@@ -609,9 +609,9 @@ monogatari.script ({
 		'show scene shop with fadeIn',
 		'show character p doubting on left',
 		'show character m happy on right',
-		'show image cales_wahoo with fadeIn on left',
+		'show image calesWahoo with fadeIn on left',
 		'm Il y a d\'abord ces pédales de la marque Wahoo, qui sont de très bonne qualité et très au gôut du jour.',
-		'show image cales_wahoo2 on center with fadeIn',
+		'show image calesWahoo2 on center with fadeIn',
 		'm Ensuite la même marque propose des pédales avec capteur de puissance intégré.',
 		'm Cette fonctionnalité permet aux cyclistes d\'avoir un meilleur suivi de leurs dépenses caloriques.',
 		'show image cales_garmin with fadeIn on right',
@@ -620,7 +620,7 @@ monogatari.script ({
 		'p Je pense que je vais prendre... ',
 		{
 			'Choice': {
-				'cales_wahoo': {
+				'calesWahoo': {
 					// https://fr-eu.wahoofitness.com/devices/pedals/speedplay/speedplay-nano-buy
 					'Text': 'Cales Wahoo Speedplay - CHF 449.90',
 					'Class': 'choicesButtonsLeft',
@@ -630,7 +630,7 @@ monogatari.script ({
 					'onChosen': function(){addExpense(449.90)},
 					'onRevert': function(){substractExpense(449.90)},
 				},
-				'cales_wahoo2': {
+				'calesWahoo2': {
 					// https://fr-eu.wahoofitness.com/devices/pedals/powrlink/powrlink-zero-dual-power-pedal-buy
 					'Text': 'Cales Wahoo Speedplay PowerMeter - CHF 999.90',
 					'Class': 'choicesButtonsCenter',
@@ -653,8 +653,8 @@ monogatari.script ({
 			}
 		},
 		'play sound cash',
-		'hide image cales_wahoo with fadeIn',
-		'hide image cales_wahoo2 with fadeIn',
+		'hide image calesWahoo with fadeIn',
+		'hide image calesWahoo2 with fadeIn',
 		'hide image cales_garmin with fadeIn',
 		'centered Tu as depensé CHF {{lastExpense}} pour ton pédales !',
 		'jump Scene11',
