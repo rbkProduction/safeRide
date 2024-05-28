@@ -176,7 +176,7 @@ function addExpense(amount) {
 	monogatari.storage ().lastExpense = amount;
 	// Function to limit the choices depending on the expenses
 	if (totalAmountSpent > 4750){
-		this.storage ().overBudget = false;
+		monogatari.storage ().overBudget = false;
 	};
 	return true;
 };
@@ -225,7 +225,7 @@ monogatari.script ({
 		'centered Tu t\'es rendu chez Custom Ride, l\'expert du montage à la carte. Et tu as rendez-vous avec Marie qui va te conseiller tout au long du processus.',
 		'centered Par contre, tu es limité en terme de budget et tu peux te permettre de dépenser CHF 4\'750 au maximum.',
 		'centered Ce que tu recherches pour ton nouveau vélo : de la légèreté, de l\'efficacité et du style.',
-		'centered Bonne chance et attention au budget !',
+		'centered Bonne chance et attention au budget ! ',
 		'jump Scene1',
 	],
 
@@ -291,12 +291,12 @@ monogatari.script ({
 		{
 			'Conditional': {
 				'Condition': function(){
-						return totalAmountSpent >= 4750;
+					return totalAmountSpent >= 4750;
 				},
+				'True': 'jump Scene3',
 				'False': 'jump Lose',
 			}
 		},
-		'jump Scene3',
 	],
 
 	'Scene3': [
@@ -361,6 +361,7 @@ monogatari.script ({
 				'Condition': function(){
 						return totalAmountSpent >= 4750;
 				},
+				'True': 'm Très bon choix.',
 				'False': 'jump Lose',
 			}
 		},
@@ -431,6 +432,7 @@ monogatari.script ({
 				'Condition': function(){
 						return totalAmountSpent >= 4750;
 				},
+				'True': 'm Je comprends ce choix.',
 				'False': 'jump Lose',
 			}
 		},
@@ -494,6 +496,7 @@ monogatari.script ({
 				'Condition': function(){
 						return totalAmountSpent >= 4750;
 				},
+				'True': 'm Il va être super ce vélo ! ',
 				'False': 'jump Lose',
 			}
 		},
@@ -561,6 +564,7 @@ monogatari.script ({
 				'Condition': function(){
 						return totalAmountSpent >= 4750;
 				},
+				'True': 'm Intéressant..',
 				'False': 'jump Lose',
 			}
 		},
@@ -621,6 +625,7 @@ monogatari.script ({
 				'Condition': function(){
 						return totalAmountSpent >= 4750;
 				},
+				'True': 'm J\'aurais fait pareil.',
 				'False': 'jump Lose',
 			}
 		},
@@ -683,6 +688,7 @@ monogatari.script ({
 				'Condition': function(){
 						return totalAmountSpent >= 4750;
 				},
+				'True': 'm Et voilà qui clôt votre vélo.',
 				'False': 'jump Lose',
 			}
 		},
@@ -700,6 +706,7 @@ monogatari.script ({
 	
 
 	'Win': [
+		'stop music game',
 		'play music end on loop with volume 50',
 		'show scene bikeFinal',
 		'show character p smiling on left with fadeIn',
@@ -708,6 +715,7 @@ monogatari.script ({
 	],
 
 	'Lose': [
+		'stop music game',
 		'play music end on loop with volume 50',
 		'show scene storefront',
 		'show character p shocked on left with fadeIn',
