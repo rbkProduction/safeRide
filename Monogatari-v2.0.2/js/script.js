@@ -224,7 +224,7 @@ monogatari.script ({
 		'centered Cela fait quelques temps maintenant que tu t\'es mis au cyclisme et tu souhaites investir dans un nouveau vélo de course.',
 		'centered Tu t\'es rendu chez Custom Ride, l\'expert du montage à la carte. Et tu as rendez-vous avec Marie qui va te conseiller tout au long du processus.',
 		'centered Par contre, tu es limité en terme de budget et tu peux te permettre de dépenser CHF 4\'750 au maximum.',
-		'centered Ce que tu recherches pour ton nouveau vélo : de la légèreté, de la polyvalence et du style.',
+		'centered Ce que tu recherches pour ton nouveau vélo : de la légèreté, de l\'efficacité et du style.',
 		'centered Bonne chance et attention au budget !',
 		'jump Scene1',
 	],
@@ -236,10 +236,10 @@ monogatari.script ({
 		'm Bonjour. Bienvenue chez Custom Ride ! Je suis Marie, comment puis-je vous aider ?',
 		'show character m smiling on right',
 		'show character p front on left',
-		'p Bonjour. Je suis à la recherche d\'un nouveau vélo de course et j\'aimerais assembler le mien pièce par pièce. Pouvez-vous m\'aider à choisir les composants ?',
+		'p Bonjour. J\'aimerais assembler mon vélo à partir du cadre. Pouvez-vous m\'aider à choisir les composants ?',
 		'm Bien sûr ! Nous allons vous faire un montage à la carte.',
-		'p Exactement.',
-		'm Super, je vous laisse me suivre. On va commencer par choisir un cadre.',
+		'p Super, merci.',
+		'm Je vous laisse me suivre. On va commencer par sélectionner un cadre.',
 		'jump Scene2',
 	],
 
@@ -288,6 +288,14 @@ monogatari.script ({
 		'hide image cadreAcier',
 		'hide image cadreCarbone',
 		'centered Tu as depensé CHF {{lastExpense}} pour le cadre.',
+		{
+			'Conditional': {
+				'Condition': function(){
+						return totalAmountSpent >= 4750;
+				},
+				'False': 'jump Lose',
+			}
+		},
 		'jump Scene3',
 	],
 
@@ -296,17 +304,11 @@ monogatari.script ({
 		'show character p interested on left with fadeIn',
 		'show character m front on right with fadeIn',
 		'm Maintenant que nous avons la base du vélo. Voyons quel cintre vous souhaitez pour votre guidon.',
-		'jump Scene4',
-	],
-
-
-	'Scene4': [
-		'show scene shop',
 		'show character m front on right',
 		'show character p smiling on left',
 		'm Les cintres pour vélo de courses permettent une variation de placement des mains.',
 		'm Le cycliste peut les poser soit sur le dessus, soit vers les cocottes du bas pour une position plus aggressive.',
-		'show character p front on left',
+		'show character p rightSide on left',
 		'm Votre choix de cintre sera donc plutôt orienté esthétique et confort.',
 		'show image cintreBMC on left with fadeIn',
 		'show image cintreBontrager on center with fadeIn',
@@ -354,29 +356,33 @@ monogatari.script ({
 		'hide image cintreSyncros with fadeIn',
 		'centered Tu as depensé CHF {{lastExpense}} pour le cintre.',
 		'show character p surprised on left',
-		'jump Scene5',
-	],
-
-	'Scene5': [
-		'show scene shop with fadeIn',
+		{
+			'Conditional': {
+				'Condition': function(){
+						return totalAmountSpent >= 4750;
+				},
+				'False': 'jump Lose',
+			}
+		},
+		
 		'show character p smiling on left with fadeIn',
 		'show character m surprised on right with fadeIn',
 		'm Alors, concernant les freins, vous avez le choix entre des freins mécaniques ou des freins hydrauliques.',
 		'm Les freins mécaniques fonctionnent avec un système de patins qui vont venir faire le frottement avec la jante de la roue lorsque vous freinez. Il s\'agit d\'un étrier que l\'on va venir fixer à l\'avant et à l\'arrière des roues.',
 		'show image freinsShimano on left with fadeIn',
 		'show image freinsSram on center with fadeIn',
-		'm Shimano est SRAM proposent tous deux un très bon système, abordable et amplement efficace.',
+		'm Shimano et SRAM proposent tous deux un très bon système, abordable et amplement efficace.',
 		'show image freinsDisque on right with fadeIn',
-		'm Les freins hydrauliques fonctionnent à l\'aide de disques et représentent un système plus coûteux et plus haut de gamme.',
-		'm On place un disque à l\'avant et à l\'arrière qui sera aussi bloqué par des étriers. Mais ceux-ci sont placés au niveau de l\'axe de la roue et vous aurez moins de câblage apparents sur le cadre du vélo.',
+		'm Les freins hydrauliques fonctionnent à l\'aide de disques et représentent un système plus coûteux et plus haut de gamme. Mais qui simplifie l\'allure esthétique du vélo et et procurent un meilleur contrôle.',
+		'm On place un disque à l\'avant et à l\'arrière qui sera aussi bloqué par des étriers. Mais ceux-ci sont placés au niveau de l\'axe de la roue ; vous aurez donc moins de câblage apparents sur le cadre du vélo.',
 		'm Ils nécessitent également de l\'huile qui l\'on va introduire dans les manettes de freins, d\'où le terme « hydraulique ».',
 		'p Et au niveau ensuite de l\'entretien, y-a-t-il une différence entre les deux ?',
 		'm Légèrement, oui.',
 		'show character p shocked on left with fadeIn',
-		'm Les freins à disque vont avoir besoin d\'une purge du liquide une à doix fois par an selon votre fréquence d\'utilisation. Aussi, de temps en temps, quand vous lavez votre vélo par exemple, vous devrez juste mettre un peu de produit dégraissant sur les disques et essuyez avec un chiffon propre.',
+		'm Les freins à disque vont avoir besoin d\'une purge du liquide une à doix fois par an selon votre fréquence d\'utilisation. Aussi, de temps en temps, quand vous lavez votre vélo par exemple, vous devriez juste mettre un peu de produit dégraissant sur les disques et essuyez avec un chiffon propre.',
 		'm Mais attention, surtout ne touchez jamais les disques avec vos mains, qui sont par défaut plutôt grasses. Un vieux t-shirt que vous déchirez en morceaux fera très bien l\'affaire.',
 		'p Et les freins à patins ?',
-		'm Les freins à patins ne nécessitent pas de produits ou de purge. En revanche, avec l\'usure, vous devrez changer les patins puisque la gomme sera sollicitée avec le temps. Tout dépend de la fréquence à laquelle vous utiliserez votre vélo, mais en général il faut les changer une fois par an.',
+		'm Les freins à patins ne nécessitent pas de produits ou de purge. En revanche, avec l\'usure, vous devrez changer les patins puisque la gomme sera sollicitée avec les frottements. Tout dépend de la fréquence à laquelle vous utiliserez votre vélo, mais en général il faut les changer une fois par an.',
 		'p D\'accord, je comprends mieux.',
 		'm Au final, les freins hydrauliques offrent une meilleure modulation et une meilleure puissance de freinage, mais sont plus chers.',
 		'p Huh-huh.',
@@ -420,27 +426,24 @@ monogatari.script ({
 		'hide image freinsSram',
 		'hide image freinsDisque',
 		'centered Tu as depensé CHF {{lastExpense}} pour les freins.',
-		'jump Scene6',
-	],
-
-	'Scene6': [
-		'show scene shop',
+		{
+			'Conditional': {
+				'Condition': function(){
+						return totalAmountSpent >= 4750;
+				},
+				'False': 'jump Lose',
+			}
+		},
+		
 		'show character p front on left',
 		'show character m thirdSide on right',
 		'm Passons mainteant au choix de la selle.',
-		'p Hum, excusez-moi, il reste encore beaucoup de composants à acheter pour mon vélo ?',
-		'm Non, rassurez-vous, nous sommes presques au bout. Il nous reste encore la selle, le pédalier, les deux dérailleurs, les roues et les pneus, ainsi que les pédales.',
-		'show character p interested on left with fadeIn',
-		'p D\'accord, je me rends compte quand même de l\'investissement que cela représente.',
 		'm Je vous laisse me suivre..',
-		'jump Scene7',
-	],
-
-	'Scene7': [
-		'show scene shop with fadeIn',
 		'show character p smiling on left',
 		'show character m smiling on right',
 		'm Pour la selle, comme pour le cintre, c\'est une question de confort et d\'esthétique. Je vous présente ici trois selles de bonne qualité.',
+		'm Pour savoir si la selle vous convient, il va falloir que vous la testiez pendant quelques sorties à vélo.',
+		'm Chez custom Ride, nous vous donnons la possibilité de la rapporter - même utilisée ! - jusqu\'à un mois après l\'achat si elle ne vous convient pas ! ',
 		'show image selleFizik on left with fadeIn',
 		'show image selleItalia on center with fadeIn',
 		'show image sellePro on right with fadeIn',
@@ -486,16 +489,20 @@ monogatari.script ({
 		'hide image selleItalia',
 		'hide image sellePro',
 		'centered Tu as depensé CHF {{lastExpense}} pour la selle.',
-		'jump Scene8',
-	],
+		{
+			'Conditional': {
+				'Condition': function(){
+						return totalAmountSpent >= 4750;
+				},
+				'False': 'jump Lose',
+			}
+		},
 
-	'Scene8': [
-		'show scene shop with fadeIn',
 		'show character p interested on left',
 		'show character m leftSide on right',
 		'm Concernant le pédalier, les trois plus grandes marques sont Shimano, SRAM et Campagnolo.',
 		'm SRAM et Campagnolo sont de très très bonnes marques, mais si je peux me permettre, je vous recommande Shimano.',
-		'm Avec Shimano, vous aurez une aisance à entretenir les pièces puisque c\'est une marque qui est très répandue. En plus, Shimano est très qualitatif et fonctionne très facilement.',
+		'm Avec Shimano, vous aurez une aisance à entretenir les pièces puisque c\'est une marque qui est très répandue. En plus, Shimano est qualitatif et fonctionne plutôt intuitivement.',
 		'p J\'y ai déjà réfléchi et effectivement je voulais partir sur du Shimano. Je me suis déjà renseigné sur la marque.',
 		'm Aaaah, monsieur connaît à ce que je vois !',
 		'show image pedalierCampagnolo on left with fadeIn',
@@ -515,8 +522,8 @@ monogatari.script ({
 					'Clickable': function(){
 						return this.storage().overBudget
 					},
-					'onChosen': function(){addExpense(602,30)},
-					'onRevert': function(){substractExpense(602,30)},
+					'onChosen': function(){addExpense(1664,25)},
+					'onRevert': function(){substractExpense(1664,25)},
 				},
 				'pedalierShimano': {
 					// https://bike.shimano.com/fr-FR/product/component/dura-ace-r9200/FC-R9200.html
@@ -535,8 +542,8 @@ monogatari.script ({
 					'Clickable': function(){
 						return this.storage().overBudget
 					},
-					'onChosen': function(){addExpense(277)},
-					'onRevert': function(){substractExpense(277)},
+					'onChosen': function(){addExpense(1338,95)},
+					'onRevert': function(){substractExpense(1338,95)},
 				},
 			}
 		},
@@ -547,23 +554,28 @@ monogatari.script ({
 		'centered Tu as depensé CHF {{lastExpense}} pour ton nouveau pédalier !',
 		'centered Mais à ta plus grande surprise, Marie t\'annonce ensuite que... ',
 		'm Ha oui, j\'ai oublié de vous préciser qu\'avec le pédalier, il faut aussi prévoir le coût de la cassette adaptée (CHF 227), du dérailleur arrière et avant (CHF 486,35 + CHF 294,8), ainsi que de la chaîne de 12V (CHF 53,80).',
-		'm Cela ajoute donc CHF 1\'464,85 à vos dépenses actuelles.',
+		'm Cela ajoute donc CHF 1\'061,95 à vos dépenses actuelles.',
 		'show character p surprised on left', 
-		'jump Scene9',
-	],
+		{
+			'Conditional': {
+				'Condition': function(){
+						return totalAmountSpent >= 4750;
+				},
+				'False': 'jump Lose',
+			}
+		},
 
-	'Scene9': [
-		'show scene shop with fadeIn',
 		'show character p doubting on left',
 		'show character m front on right',
+		'm Pour les pédales, je vous recommande deux marques qui ont un grand succès auprès du public.',
 		'show image calesWahoo with fadeIn on left',
-		'm Il y a d\'abord ces pédales de la marque Wahoo, qui sont de très bonne qualité et au goût du jour.',
+		'm Il y a d\'abord ces pédales de la marque Wahoo, qui sont de très bonne qualité et au goût du jour. Mais enfin, voilà. Ce sont des cales quoi. Classiques.',
 		'show image calesWahoo2 on center with fadeIn',
 		'm Ensuite la même marque propose des pédales avec capteur de puissance intégré.',
-		'm Cette fonctionnalité permet aux cyclistes d\'avoir un meilleur suivi de leurs dépenses caloriques.',
+		'm Cette fonctionnalité permet aux cyclistes d\'avoir un meilleur suivi de leurs courbes de puissance, en fonction du moulinage.',
 		'show image calesGarmin with fadeIn on right',
 		'm Enfin, les cales Garmin sont un très bon compromis entre les deux autres, car elles proposent aussi un système de capteur de puissance, mais sur qu\'une seule pédale.',
-		'm Certes, il y aura légèrement moins de précisions au niveau de la puissance, mais vous aurez la fonctionnalité ainsi qu\'un prix plus abordable.',
+		'm Certes, il y aura légèrement moins de précisions au niveau de la puissance, mais vous aurez la fonctionnalité en profitant d\'un prix plus abordable.',
 		'p Je pense que je vais prendre... ',
 		{
 			'Choice': {
@@ -604,21 +616,29 @@ monogatari.script ({
 		'hide image calesWahoo2 with fadeIn',
 		'hide image calesGarmin with fadeIn',
 		'centered Tu as depensé CHF {{lastExpense}} pour tes pédales !',
-		'jump Scene10',
-	],
+		{
+			'Conditional': {
+				'Condition': function(){
+						return totalAmountSpent >= 4750;
+				},
+				'False': 'jump Lose',
+			}
+		},
 
-	'Scene10': [
-		'show scene shop with fadeIn',
 		'show character p shocked on left',
 		'show character m laughing on right',
 		'm Pour finir, nous allons décider les roues que vous souhaitez installer.',
 		'show image rouesDtSwiss on left with fadeIn',
 		'm Les roues DT Swiss sont très réputées et considérées comme du haut de gamme. Et pour le prix de CHF 2\'948, c\'est le cas de le dire !',
 		'show image rouesZipp on center with fadeIn',
-		'm Ensuite la marque Zipp est aussi réputé et plus abordable.',
+		'm Ensuite la marque Zipp est aussi connue et plus abordable.',
 		'show image rouesSpecialized with fadeIn on right',
 		'm Puis, les roues specialized font aussi très bien l\'affaire pour leur prix !',
-		'm Quelles roues souhaitez-vous ?',
+		'm Si vous voulez mon avis, les roues Speciliazed feront très bien l\'affaire pour le rythme auquel vous allez rouler.',
+		'm Vous pourrez toujours réinvestir dans du matériel plus technologique par la suite et petit à petit.',
+		'm Parce que le cyclisme, ça coûte cher malgré tout ! ',
+		'p Effecivement, merci pour vos conseils.',
+		'm Alors, quelles roues souhaitez-vous ?',
 		{
 			'Choice': {
 				'rouesDtSwiss': {
@@ -658,11 +678,15 @@ monogatari.script ({
 		'hide image rouesZipp with fadeIn',
 		'hide image rouesSpecialized with fadeIn',
 		'centered Tu as depensé CHF {{lastExpense}} pour tes roues !',
-		'jump Scene11',
-	],
+		{
+			'Conditional': {
+				'Condition': function(){
+						return totalAmountSpent >= 4750;
+				},
+				'False': 'jump Lose',
+			}
+		},
 
-	'Scene11': [
-		'show scene store',
 		'show character m smiling on right',
 		'show character p laughing on left',
 		'm Félicitations, nous y sommes arrivés ! Vous avez monté votre vélo de A à Z.',
@@ -671,15 +695,25 @@ monogatari.script ({
 		'play sound tools',
 		'show scene black with fadeIn',
 		'centered Le méchanicien assemble ton vélo...',
-		'jump Ending',
+		'jump Win',
 	],
 	
 
-	'Ending': [
+	'Win': [
 		'play music end on loop with volume 50',
 		'show scene bikeFinal',
 		'show character p smiling on left with fadeIn',
 		'centered Bravo, tu as réussi à respecter ton budget et tu es repart avec ton propre vélo.',
+		'end',
+	],
+
+	'Lose': [
+		'play music end on loop with volume 50',
+		'show scene storefront',
+		'show character p shocked on left with fadeIn',
+		'centered Aïe, tu as dépassé le budget... ',
+		'centered ce n\'est pas si simple de maintenir un budget lorsqu\'on nous présente tous ces beaux produits ! ',
+		'centered T\'en fais pas. Le but, c\'est que tu aies acquéris des connaissances sur le montage d\'un vélo de route.',
 		'end',
 	],
 
