@@ -175,7 +175,7 @@ function addExpense(amount) {
 	// Updating the lastExpense in the storage of the player
 	monogatari.storage ().lastExpense = amount;
 	// Function to limit the choices depending on the expenses
-	if (totalAmountSpent > 7500){
+	if (totalAmountSpent > 4750){
 		this.storage ().overBudget = false;
 	};
 	return true;
@@ -223,7 +223,7 @@ monogatari.script ({
 		'centered Bonjour {{player.name}}.',
 		'centered Cela fait quelques temps maintenant que tu t\'es mis au cyclisme et tu souhaites investir dans un nouveau vélo de course.',
 		'centered Tu t\'es rendu chez Custom Ride, l\'expert du montage à la carte. Et tu as rendez-vous avec Marie qui va te conseiller tout au long du processus.',
-		'centered Par contre, tu es limité en terme de budget et tu peux te permettre de dépenser CHF ??? au maximum.',
+		'centered Par contre, tu es limité en terme de budget et tu peux te permettre de dépenser CHF 4\'750 au maximum.',
 		'centered Ce que tu recherches pour ton nouveau vélo : de la légèreté, de la polyvalence et du style.',
 		'centered Bonne chance et attention au budget !',
 		'jump Scene1',
