@@ -71,11 +71,6 @@ button:hover {
  * ===========================
 **/
 
-/* Style of the title */
-h1 {
-	color: darkgrey;
-};
-
 
 /* Main Menu Styling */
 [data-screen="main"] {
@@ -105,8 +100,8 @@ h1 {
 main-menu{
 	margin: 0;
 	position: absolute;
-	top: 50%;
-	left: 50%;
+	top: 55%;
+	left: 70%;
 	transform: translate(-50%, -50%);
 }
 
@@ -221,9 +216,8 @@ div [data-content=wrapper] {
 
 /* Character Images Styles */
 [data-screen="game"] [data-character] {
-	position: relative;
-	left: 50px;
-	right: 50px;
+	left: 10px;
+	right: 10px;
 	bottom: 0%;
 	max-width: 100%;
     height: auto;

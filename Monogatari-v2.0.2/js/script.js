@@ -106,7 +106,7 @@ monogatari.assets ('images', {
 
 // Define the backgrounds for each scene.
 monogatari.assets ('scenes', {
-	'homepage': 'homepage.svg',
+	'homepage': 'homepage.png',
 	'storefront': 'storefront.svg',
 	'shop': 'shop.svg',
 	'bikeFinal': 'bikeFinal.svg',
@@ -196,7 +196,6 @@ monogatari.script ({
 		'show scene storefront',
 		'play music intro with volume 30',
 		'show notification Welcome',
-		'jump Scene2',
 		{
 			'Input': {
 				'Text': 'Quel est ton nom ?',
@@ -224,7 +223,7 @@ monogatari.script ({
 		'centered Bonjour {{player.name}}.',
 		'centered Cela fait quelques temps maintenant que tu t\'es mis au cyclisme et tu souhaites investir dans un nouveau vélo de course.',
 		'centered Tu t\'es rendu chez Custom Ride, l\'expert du montage à la carte. Et tu as rendez-vous avec Marie qui va te conseiller tout au long du processus.',
-		'centered Par contre, tu es limité en terme de budget et tu peux te permettre de dépenser CHF 4\'750 au maximum.',
+		'centered Par contre, tu es limité en terme de budget et tu peux te permettre de dépenser CHF 6\'000 au maximum.',
 		'centered Ce que tu recherches pour ton nouveau vélo : de la légèreté, de l\'efficacité et du style.',
 		'centered Bonne chance et attention au budget ! ',
 		'jump Scene1',
@@ -354,7 +353,7 @@ monogatari.script ({
 				'Condition': function(){
 						return monogatari.storage ('overBudget');
 				},
-				'True': 'jump Win',
+				'True': 'jump Scene4',
 				'False': 'jump Lose',
 			}
 		},
@@ -623,7 +622,7 @@ monogatari.script ({
 		'play sound cash',
 		'hide image calesWahoo with fadeIn',
 		'hide image calesWahoo2 with fadeIn',
-		'hide image calesGarmin with fadeIn',
+		'hide image calesGarmin',
 		'centered Tu as depensé CHF {{lastExpense}} pour tes pédales !',
 		{
 			'Conditional': {
@@ -641,7 +640,7 @@ monogatari.script ({
 		'show character p shocked on left',
 		'show character m laughing on right',
 		'm Pour finir, nous allons décider les roues que vous souhaitez installer.',
-		'show image rouesSpecialized with fadeIn on right',
+		'show image rouesSpecialized with fadeIn on left',
 		'm Les roues specialized font très bien l\'affaire pour leur prix !',
 		'show image rouesZipp on right with fadeIn',
 		'm Ensuite la marque Zipp est aussi connue et plus abordable.',
