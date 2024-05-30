@@ -175,7 +175,7 @@ function addExpense(amount) {
 	// Updating the lastExpense in the storage of the player
 	monogatari.storage ().lastExpense = amount;
 	// Function to limit the choices depending on the expenses
-	if (totalAmountSpent > 4750){
+	if (totalAmountSpent > 6000){
 		monogatari.storage ().overBudget = false;
 	};
 	return true;
@@ -196,6 +196,7 @@ monogatari.script ({
 		'show scene storefront',
 		'play music intro with volume 30',
 		'show notification Welcome',
+		'jump Scene2',
 		{
 			'Input': {
 				'Text': 'Quel est ton nom ?',
@@ -253,7 +254,7 @@ monogatari.script ({
 		'm Alors, voilà. Il y a trois options principales qui s\'offrent à vous pour le cadre. Les cadres en aluminium, les cadres en carbone et ceux en acier.',
 		'show image cadreAcier on left with fadeIn',
 		'm Les cadres en acier sont très résistants et comfortables. En revanche, il faut les entretenir plus fréquemment vu que le risque de rouille est élevé. Et ils sont également assez lourds.',
-		'show image cadreAlu on center with fadeIn',
+		'show image cadreAlu on center on top with fadeIn',
 		'm L\'aluminium, lui, est plus léger que l\'acier, mais il se conservera un peu moins bien sur le long terme. Et il est plus abordable en terme de budget qu\'un cadre en carbone ou en titane par exemple.',
 		'show image cadreCarbone on right with fadeIn',
 		'm Enfin, le cadre en carbone offre une meilleure légèreté et une meilleur absorption des vibrations. Il est plus cher, mais offre des performances supérieures.',
@@ -262,21 +263,21 @@ monogatari.script ({
 			'Choice': {
 				'Cadre en acier': {
 					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-randonnée-et-cyclotourisme/520/kit-cadre-520-disque/p/34200/?colorCode=red
-					'Text': 'Cadre en acier - CHF 819',
+					'Text': 'A) Cadre en acier - CHF 819',
 					'Class': 'choicesButtonsLeft',
 					'onChosen': function(){addExpense(819)},
 					'onRevert': function(){substractExpense(819)},
 				},
 				'Cadre en aluminium': {
 					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-randonnée-et-cyclotourisme/920/kit-cadre-920/p/21995/?colorCode=tan
-					'Text': 'Cadre en aluminium - CHF 1399',
+					'Text': 'B) Cadre en aluminium - CHF 1399',
 					'Class': 'choicesButtonsCenter',
 					'onChosen': function(){addExpense(1399)},
 					'onRevert': function(){substractExpense(1399)},
 				},
 				'Cadre en carbone': {
 					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-route/vélos-de-route-performance/domane/domane-slr/kit-cadre-domane-slr-4e-gén-/p/37303/?colorCode=black_grey
-					'Text': 'Cadre en carbone - CHF 5499',
+					'Text': 'C) Cadre en carbone - CHF 5499',
 					'Class': 'choicesButtonsRight',
 					'onChosen': function(){addExpense(5499)},
 					'onRevert': function(){substractExpense(5499)},
@@ -288,15 +289,7 @@ monogatari.script ({
 		'hide image cadreAcier',
 		'hide image cadreCarbone',
 		'centered Tu as depensé CHF {{lastExpense}} pour le cadre.',
-		{
-			'Conditional': {
-				'Condition': function(){
-					return totalAmountSpent >= 4750;
-				},
-				'True': 'jump Scene3',
-				'False': 'jump Lose',
-			}
-		},
+		'jump Scene3',
 	],
 
 	'Scene3': [
@@ -311,7 +304,7 @@ monogatari.script ({
 		'show character p rightSide on left',
 		'm Votre choix de cintre sera donc plutôt orienté esthétique et confort.',
 		'show image cintreBMC on left with fadeIn',
-		'show image cintreBontrager on center with fadeIn',
+		'show image cintreBontrager on center on top with fadeIn',
 		'show image cintreSyncros on right',
 		'show character m smiling on right',
 		'm Lequel vous fait de l\'œil?',
@@ -320,61 +313,64 @@ monogatari.script ({
 			'Choice': {
 				'cintreBMC': {
 					// https://bmc-switzerland.com/fr/collections/components/products/handlebar-ics-aero-bike-components-bmc-22-10801-005
-					'Text': 'Cintre BMC - CHF 349',
+					'Text': 'A) Cintre BMC - CHF 349',
 					'Class': 'choicesButtonsLeft',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
 					'onChosen': function(){addExpense(349)},
 					'onRevert': function(){substractExpense(349)},
 				},
-				'cintreSyncros': {
-					// https://www.syncros.com/ch/fr/product/syncros-creston-1-5-compact-handlebar
-					'Text': 'Cintre Syncros - CHF 76.99',
-					'Class': 'choicesButtonsCenter',
-					'Clickable': function(){
-						return this.storage().overBudget
-					},
-					'onChosen': function(){addExpense(76,99)},
-					'onRevert': function(){substractExpense(76,99)},
-				},
 				'cintreBontrager': {
 					// https://www.trekbikes.com/ch/fr_CH/equipement/composants-pour-vélo/cintres-de-vélo/cintres-de-vélos-route/cintre-route-bontrager-pro-vr-c/p/32645/?colorCode=black
-					'Text': 'Cintre Bontrager - CHF 259',
+					'Text': 'B) Cintre Bontrager - CHF 259',
 					'Class': 'choicesButtonsRight',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
 					'onChosen': function(){addExpense(259)},
 					'onRevert': function(){substractExpense(259)},
 				},
+				'cintreSyncros': {
+					// https://www.syncros.com/ch/fr/product/syncros-creston-1-5-compact-handlebar
+					'Text': 'C) Cintre Syncros - CHF 76.99',
+					'Class': 'choicesButtonsCenter',
+					'Clickable': function(){
+						return monogatari.storage().overBudget
+					},
+					'onChosen': function(){addExpense(76,99)},
+					'onRevert': function(){substractExpense(76,99)},
+				},
 			},
 		},
 		'play sound cash',
-		'hide image cintreBMC with fadeIn',
-		'hide image cintreBontrager with fadeIn',
-		'hide image cintreSyncros with fadeIn',
+		'hide image cintreBMC',
+		'hide image cintreBontrager',
+		'hide image cintreSyncros',
 		'centered Tu as depensé CHF {{lastExpense}} pour le cintre.',
 		'show character p surprised on left',
 		{
 			'Conditional': {
 				'Condition': function(){
-						return totalAmountSpent >= 4750;
+						return monogatari.storage ('overBudget');
 				},
-				'True': 'm Très bon choix.',
+				'True': 'jump Win',
 				'False': 'jump Lose',
 			}
 		},
+	],
 		
+	'Scene4': [
+		'show scene shop',
 		'show character p smiling on left with fadeIn',
 		'show character m surprised on right with fadeIn',
 		'm Alors, concernant les freins, vous avez le choix entre des freins mécaniques ou des freins hydrauliques.',
 		'm Les freins mécaniques fonctionnent avec un système de patins qui vont venir faire le frottement avec la jante de la roue lorsque vous freinez. Il s\'agit d\'un étrier que l\'on va venir fixer à l\'avant et à l\'arrière des roues.',
 		'show image freinsShimano on left with fadeIn',
-		'show image freinsSram on center with fadeIn',
 		'm Shimano et SRAM proposent tous deux un très bon système, abordable et amplement efficace.',
-		'show image freinsDisque on right with fadeIn',
+		'show image freinsSram on center on top with fadeIn',
 		'm Les freins hydrauliques fonctionnent à l\'aide de disques et représentent un système plus coûteux et plus haut de gamme. Mais qui simplifie l\'allure esthétique du vélo et et procurent un meilleur contrôle.',
+		'show image freinsDisque on right with fadeIn',
 		'm On place un disque à l\'avant et à l\'arrière qui sera aussi bloqué par des étriers. Mais ceux-ci sont placés au niveau de l\'axe de la roue ; vous aurez donc moins de câblage apparents sur le cadre du vélo.',
 		'm Ils nécessitent également de l\'huile qui l\'on va introduire dans les manettes de freins, d\'où le terme « hydraulique ».',
 		'p Et au niveau ensuite de l\'entretien, y-a-t-il une différence entre les deux ?',
@@ -392,30 +388,30 @@ monogatari.script ({
 			'Choice': {
 				'Les freins à patins - Shimano Dura-Ace': {
 					// https://bike.shimano.com/fr-FR/product/component/dura-ace-r9200/BR-R9200.html
-					'Text': 'Les freins à patins Shimano Dura-Ace - CHF 132',
+					'Text': 'A) Les freins à patins Shimano Dura-Ace - CHF 132',
 					'Class': 'choicesButtonsLeft',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
 					'onChosen': function(){addExpense(132)},
 					'onRevert': function(){substractExpense(132)},
 				},
 				'Les freins à patins - SRAM Force': {
 					// https://www.sram.com/en/sram/models/rb-frc-d1
-					'Text': 'Les freins à patins SRAM Force - CHF 85',
+					'Text': 'B) Les freins à patins SRAM Force - CHF 85',
 					'Class': 'choicesButtonsCenter',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
 					'onChosen': function(){addExpense(85)},
 					'onRevert': function(){substractExpense(85)},
 				},
 				'Les freins à disque': {
 					// https://bike.shimano.com/fr-FR/product/component/dura-ace-r9200/BR-R9270.html
-					'Text': 'Les freins à disque Shimano Dura-Ace - CHF 114 + CHF 61.90',
+					'Text': 'C) Les freins à disque Shimano Dura-Ace - CHF 114 + CHF 61.90',
 					'Class': 'choicesButtonsRight',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
 					'onChosen': function(){addExpense(175,9)},
 					'onRevert': function(){substractExpense(175,9)},
@@ -430,13 +426,16 @@ monogatari.script ({
 		{
 			'Conditional': {
 				'Condition': function(){
-						return totalAmountSpent >= 4750;
+					return monogatari.storage ('overBudget');
 				},
-				'True': 'm Je comprends ce choix.',
+				'True': 'jump Scene5',
 				'False': 'jump Lose',
 			}
 		},
-		
+	],
+
+	'Scene5': [
+		'show scene shop',
 		'show character p front on left',
 		'show character m thirdSide on right',
 		'm Passons mainteant au choix de la selle.',
@@ -447,7 +446,7 @@ monogatari.script ({
 		'm Pour savoir si la selle vous convient, il va falloir que vous la testiez pendant quelques sorties à vélo.',
 		'm Chez custom Ride, nous vous donnons la possibilité de la rapporter - même utilisée ! - jusqu\'à un mois après l\'achat si elle ne vous convient pas ! ',
 		'show image selleFizik on left with fadeIn',
-		'show image selleItalia on center with fadeIn',
+		'show image selleItalia on center on top with fadeIn',
 		'show image sellePro on right with fadeIn',
 		'm Laquelle vous plairait ?',
 		'show character p doubting on left with fadeIn',
@@ -456,30 +455,30 @@ monogatari.script ({
 			'Choice': {
 				'selleFizik': {
 					// https://www.fizik.com/eu_en/vento-antares-r3-adaptive.html
-					'Text': 'Selle Fizik - CHF 259',
+					'Text': 'A) Selle Fizik - CHF 259',
 					'Class': 'choicesButtonsLeft',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
 					'onChosen': function(){addExpense(259)},
 					'onRevert': function(){substractExpense(259)},
 				},
 				'selleItalia': {
 					// https://www.selleitalia.com/slr-boost-kit-carbonio/?_gl=1*134esjr*_up*MQ..*_ga*MTk2ODM1Mjc3Ni4xNzE1MDE3NTUz*_ga_4KB6M1439M*MTcxNTAxNzU1Mi4xLjAuMTcxNTAxNzU3Ni4wLjAuMA..
-					'Text': 'Selle Italia - CHF 314.90',
+					'Text': 'B) Selle Italia - CHF 314.90',
 					'Class': 'choicesButtonsCenter',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
 					'onChosen': function(){addExpense(314,90)},
 					'onRevert': function(){substractExpense(314,90)},
 				},
 				'sellePro': {
 					// https://www.selleitalia.com/slr-boost-kit-carbonio/?_gl=1*134esjr*_up*MQ..*_ga*MTk2ODM1Mjc3Ni4xNzE1MDE3NTUz*_ga_4KB6M1439M*MTcxNTAxNzU1Mi4xLjAuMTcxNTAxNzU3Ni4wLjAuMA..
-					'Text': 'Selle Pro - CHF 125',
+					'Text': 'C) Selle Pro - CHF 125',
 					'Class': 'choicesButtonsRight',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
 					'onChosen': function(){addExpense(125)},
 					'onRevert': function(){substractExpense(125)},
@@ -494,13 +493,16 @@ monogatari.script ({
 		{
 			'Conditional': {
 				'Condition': function(){
-						return totalAmountSpent >= 4750;
+					return monogatari.storage ('overBudget');
 				},
-				'True': 'm Il va être super ce vélo ! ',
+				'True': 'jump Scene6',
 				'False': 'jump Lose',
 			}
 		},
+	],
 
+	'Scene6': [
+		'show scene shop',
 		'show character p interested on left',
 		'show character m leftSide on right',
 		'm Concernant le pédalier, les trois plus grandes marques sont Shimano, SRAM et Campagnolo.',
@@ -508,45 +510,45 @@ monogatari.script ({
 		'm Avec Shimano, vous aurez une aisance à entretenir les pièces puisque c\'est une marque qui est très répandue. En plus, Shimano est qualitatif et fonctionne plutôt intuitivement.',
 		'p J\'y ai déjà réfléchi et effectivement je voulais partir sur du Shimano. Je me suis déjà renseigné sur la marque.',
 		'm Aaaah, monsieur connaît à ce que je vois !',
-		'show image pedalierCampagnolo on left with fadeIn',
-		'show character m smiling on right with fadeIn',
-		'm Le pédalier de la marque Campagnolo.',
-		'show image pedalierShimano on center with fadeIn',
+		'show image pedalierSram on left with fadeIn',
+		'm Le pédalier de la marque SRAM.',
+		'show image pedalierShimano on center on top with fadeIn',
 		'm Le pédalier de la marque Shimano.',
-		'show image pedalierSram on right with fadeIn',
-		'm Et le pédalier de la marque SRAM.',
+		'show image pedalierCampagnolo on right with fadeIn',
+		'm Le pédalier de la marque Campagnolo.',
+		'show character m smiling on right with fadeIn',
 		'p Voyons. ',
 		{
 			'Choice': {
-				'pedalierCampagnolo': {
-					// https://www.campagnolo.com/ch-fr/p%C3%A9dalier-super-record-12x2-speed/CFCSUPERRECORD12S.html
-					'Text': 'Pédalier Campagnolo 12V - CHF 602.30',
-					'Class': 'choicesButtonsLeft',
+				'pedalierSram': {
+					// https://www.sram.com/fr/sram/models/fc-frc-d1
+					'Text': 'A) Pédalier SRAM 12V - CHF 277',
+					'Class': 'choicesButtonsRight',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
-					'onChosen': function(){addExpense(1664,25)},
-					'onRevert': function(){substractExpense(1664,25)},
+					'onChosen': function(){addExpense(1338,95)},
+					'onRevert': function(){substractExpense(1338,95)},
 				},
 				'pedalierShimano': {
 					// https://bike.shimano.com/fr-FR/product/component/dura-ace-r9200/FC-R9200.html
-					'Text': 'Pédalier Shimano Dura-Ace 12V - CHF 402.90',
+					'Text': 'B) Pédalier Shimano Dura-Ace 12V - CHF 402.90',
 					'Class': 'choicesButtonsCenter',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
 					'onChosen': function(){addExpense(1464,85)},
 					'onRevert': function(){substractExpense(1464,85)},
 				},
-				'pedalierSram': {
-					// https://www.sram.com/fr/sram/models/fc-frc-d1
-					'Text': 'Pédalier SRAM 12V - CHF 277',
-					'Class': 'choicesButtonsRight',
+				'pedalierCampagnolo': {
+					// https://www.campagnolo.com/ch-fr/p%C3%A9dalier-super-record-12x2-speed/CFCSUPERRECORD12S.html
+					'Text': 'C) Pédalier Campagnolo 12V - CHF 602.30',
+					'Class': 'choicesButtonsLeft',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
-					'onChosen': function(){addExpense(1338,95)},
-					'onRevert': function(){substractExpense(1338,95)},
+					'onChosen': function(){addExpense(1664,25)},
+					'onRevert': function(){substractExpense(1664,25)},
 				},
 			}
 		},
@@ -562,22 +564,25 @@ monogatari.script ({
 		{
 			'Conditional': {
 				'Condition': function(){
-						return totalAmountSpent >= 4750;
+					return monogatari.storage ('overBudget');
 				},
-				'True': 'm Intéressant..',
+				'True': 'jump Scene7',
 				'False': 'jump Lose',
 			}
 		},
+	],
 
+	'Scene7': [
+		'show scene shop',
 		'show character p doubting on left',
 		'show character m front on right',
 		'm Pour les pédales, je vous recommande deux marques qui ont un grand succès auprès du public.',
 		'show image calesWahoo with fadeIn on left',
 		'm Il y a d\'abord ces pédales de la marque Wahoo, qui sont de très bonne qualité et au goût du jour. Mais enfin, voilà. Ce sont des cales quoi. Classiques.',
-		'show image calesWahoo2 on center with fadeIn',
+		'show image calesWahoo2 on right with fadeIn',
 		'm Ensuite la même marque propose des pédales avec capteur de puissance intégré.',
 		'm Cette fonctionnalité permet aux cyclistes d\'avoir un meilleur suivi de leurs courbes de puissance, en fonction du moulinage.',
-		'show image calesGarmin with fadeIn on right',
+		'show image calesGarmin with fadeIn on center on top',
 		'm Enfin, les cales Garmin sont un très bon compromis entre les deux autres, car elles proposent aussi un système de capteur de puissance, mais sur qu\'une seule pédale.',
 		'm Certes, il y aura légèrement moins de précisions au niveau de la puissance, mais vous aurez la fonctionnalité en profitant d\'un prix plus abordable.',
 		'p Je pense que je vais prendre... ',
@@ -585,33 +590,33 @@ monogatari.script ({
 			'Choice': {
 				'calesWahoo': {
 					// https://fr-eu.wahoofitness.com/devices/pedals/speedplay/speedplay-nano-buy
-					'Text': 'Cales Wahoo Speedplay - CHF 449.90',
+					'Text': 'A) Cales Wahoo Speedplay - CHF 449.90',
 					'Class': 'choicesButtonsLeft',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
 					'onChosen': function(){addExpense(449,90)},
 					'onRevert': function(){substractExpense(449,90)},
 				},
-				'calesWahoo2': {
-					// https://fr-eu.wahoofitness.com/devices/pedals/powrlink/powrlink-zero-dual-power-pedal-buy
-					'Text': 'Cales Wahoo Speedplay PowerMeter - CHF 999.90',
-					'Class': 'choicesButtonsCenter',
-					'Clickable': function(){
-						return this.storage().overBudget
-					},
-					'onChosen': function(){addExpense(999,90)},
-					'onRevert': function(){substractExpense(999,90)},
-				},
 				'calesGarmin': {
 					// https://www.garmin.com/fr-CH/p/658661/pn/010-02388-03
-					'Text': 'Cales Garmin Rally RS100  - CHF 499.90',
+					'Text': 'B) Cales Garmin Rally RS100  - CHF 499.90',
 					'Class': 'choicesButtonsRight',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
 					'onChosen': function(){addExpense(499,90)},
 					'onRevert': function(){substractExpense(499,90)},
+				},
+				'calesWahoo2': {
+					// https://fr-eu.wahoofitness.com/devices/pedals/powrlink/powrlink-zero-dual-power-pedal-buy
+					'Text': 'C) Cales Wahoo Speedplay PowerMeter - CHF 999.90',
+					'Class': 'choicesButtonsCenter',
+					'Clickable': function(){
+						return monogatari.storage().overBudget
+					},
+					'onChosen': function(){addExpense(999,90)},
+					'onRevert': function(){substractExpense(999,90)},
 				},
 			}
 		},
@@ -623,22 +628,25 @@ monogatari.script ({
 		{
 			'Conditional': {
 				'Condition': function(){
-						return totalAmountSpent >= 4750;
+					return monogatari.storage ('overBudget');
 				},
-				'True': 'm J\'aurais fait pareil.',
+				'True': 'jump Scene8',
 				'False': 'jump Lose',
 			}
 		},
+	],
 
+	'Scene8': [
+		'show scene shop',
 		'show character p shocked on left',
 		'show character m laughing on right',
 		'm Pour finir, nous allons décider les roues que vous souhaitez installer.',
-		'show image rouesDtSwiss on left with fadeIn',
-		'm Les roues DT Swiss sont très réputées et considérées comme du haut de gamme. Et pour le prix de CHF 2\'948, c\'est le cas de le dire !',
-		'show image rouesZipp on center with fadeIn',
-		'm Ensuite la marque Zipp est aussi connue et plus abordable.',
 		'show image rouesSpecialized with fadeIn on right',
-		'm Puis, les roues specialized font aussi très bien l\'affaire pour leur prix !',
+		'm Les roues specialized font très bien l\'affaire pour leur prix !',
+		'show image rouesZipp on right with fadeIn',
+		'm Ensuite la marque Zipp est aussi connue et plus abordable.',
+		'show image rouesDtSwiss on center on top with fadeIn',
+		'm Les roues DT Swiss sont très réputées et considérées comme du haut de gamme. Et pour le prix de CHF 2\'948, c\'est le cas de le dire !',
 		'm Si vous voulez mon avis, les roues Speciliazed feront très bien l\'affaire pour le rythme auquel vous allez rouler.',
 		'm Vous pourrez toujours réinvestir dans du matériel plus technologique par la suite et petit à petit.',
 		'm Parce que le cyclisme, ça coûte cher malgré tout ! ',
@@ -646,36 +654,37 @@ monogatari.script ({
 		'm Alors, quelles roues souhaitez-vous ?',
 		{
 			'Choice': {
+				'rouesSpecialized': {
+					// https://www.specialized.com/ch/fr/roval-alpinist-cl-ii/p/205468?color=330010-205468
+					'Text': 'A) Roues Specialized  - CHF 850',
+					'Class': 'choicesButtonsRight',
+					'Clickable': function(){
+						return monogatari.storage().overBudget
+					},
+					'onChosen': function(){addExpense(850)},
+					'onRevert': function(){substractExpense(850)},
+				},
 				'rouesDtSwiss': {
 					// https://www.dtswiss.com/fr/roues/roues-route/performance/prc-1100-dicut-mon-chasseral
-					'Text': 'Roues DT Swiss - CHF 2948',
+					'Text': 'B) Roues DT Swiss - CHF 2948',
 					'Class': 'choicesButtonsLeft',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
 					'onChosen': function(){addExpense(2948)},
 					'onRevert': function(){substractExpense(2948)},
 				},
 				'rouesZipp': {
 					// https://www.dtswiss.com/fr/roues/roues-route/performance/prc-1100-dicut-mon-chasseral
-					'Text': 'Roues Zipp - CHF 1118',
+					'Text': 'C) Roues Zipp - CHF 1118',
 					'Class': 'choicesButtonsCenter',
 					'Clickable': function(){
-						return this.storage().overBudget
+						return monogatari.storage().overBudget
 					},
 					'onChosen': function(){addExpense(1118)},
 					'onRevert': function(){substractExpense(1118)},
 				},
-				'rouesSpecialized': {
-					// https://www.specialized.com/ch/fr/roval-alpinist-cl-ii/p/205468?color=330010-205468
-					'Text': 'Roues Specialized  - CHF 850',
-					'Class': 'choicesButtonsRight',
-					'Clickable': function(){
-						return this.storage().overBudget
-					},
-					'onChosen': function(){addExpense(850)},
-					'onRevert': function(){substractExpense(850)},
-				},
+				
 			}
 		},
 		'play sound cash',
@@ -686,13 +695,16 @@ monogatari.script ({
 		{
 			'Conditional': {
 				'Condition': function(){
-						return totalAmountSpent >= 4750;
+					return monogatari.storage ('overBudget');
 				},
-				'True': 'm Et voilà qui clôt votre vélo.',
+				'True': 'jump Scene9',
 				'False': 'jump Lose',
 			}
 		},
+	],
 
+	'Scene9': [
+		'show scene shop',
 		'show character m smiling on right',
 		'show character p laughing on left',
 		'm Félicitations, nous y sommes arrivés ! Vous avez monté votre vélo de A à Z.',

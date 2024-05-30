@@ -161,6 +161,10 @@ progress {
 	background-color: aliceblue;
 };
 
+/*  */
+[data-component=wrapper] {
+	flex-direction: row;
+};
 
 /* Style of the flex box that contains the choices */
 div [data-content=wrapper] {
@@ -217,8 +221,9 @@ div [data-content=wrapper] {
 
 /* Character Images Styles */
 [data-screen="game"] [data-character] {
-	left: 350px;
-	right: 350px;
+	position: relative;
+	left: 50px;
+	right: 50px;
 	bottom: 0%;
 	max-width: 100%;
     height: auto;
