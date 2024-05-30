@@ -163,10 +163,9 @@ progress {
 
 
 /* Style of the flex box that contains the choices */
-choice-container [data-content=wrapper] {
+div [data-content=wrapper] {
 	flex-direction: row;
 	top: 150px;
-
 };
 
 /* Style of the disabeld button (because of the Clickable option) */
