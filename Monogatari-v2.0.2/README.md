@@ -33,8 +33,3 @@ Tous les bruits sonores et les musiques sont issus de la bibliothèque audio de 
 Toutes les images ont été extraites de [Canva Premium](https://www.canva.com/), ainsi que de [Freepik](https://fr.freepik.com/).
 Les personnages ont été réalisé gratuitement à l'aide de [Scratch](https://scratch.mit.edu/).
 
-### Difficultés
-Encore à ce jour, quelques éléments compliquent le rendu esthétique et fonctionnel du jeu, notamment : 
-- Le CSS n'est pas appliqué sur tous les éléments, par exemple le titre « Custom Ride » sur la page d'accueil ou encore sur les boutons de choix
-- 
-
