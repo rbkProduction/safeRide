@@ -11,6 +11,9 @@
  * =============================================================================
 **/
 
+/* Style of the title */
+
+
 /* Style of the div statBar */
 [data-ui="stats"] {
 	display: inline;
@@ -30,11 +33,9 @@ progress {
 	background-color: aliceblue;
 };
 
-/* Style of the title */
-h1 {
+main-screen [id=title] {
 	color: darkgrey;
 };
-
 
 /* Style of the disabeld button (because of the Clickable option) */
 [disabled] {
@@ -42,7 +43,7 @@ h1 {
 };
 
 /* Style of the flex box that contains the choices */
-[data-component="choice-container"] {
+choice-container [data-content=wrapper] {
 	flex-direction: row;
 	top: 150px;
 
@@ -194,8 +195,8 @@ main-menu{
 	position: absolute;
 	left: 10%;
 	right: 10%;
-	color: black;
-	background-color: grey;
+	color: whitesmoke;
+	background-color: black;
 }
 
 /* Character Name Style */

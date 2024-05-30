@@ -120,7 +120,7 @@ monogatari.assets ('scenes', {
 monogatari.characters ({
 	'm': {
 		name: 'Marie',
-		color: 'red',
+		color: 'darkred',
 		directory: 'marie',
 		sprites: {
 			back: 'back.png',
@@ -136,7 +136,7 @@ monogatari.characters ({
 	},
 	'p': {
 		name: '{{player.name}}',
-		color: 'green',
+		color: 'darkolivegreen',
 		directory: 'player',
 		sprites: {
 			front: 'front.png',
