@@ -10,13 +10,23 @@ monogatari.action ('message').messages ({
 			<p><a href='https://monogatari.io/demo/'>Demo</a> - A simple Demo.</p>
 		`
 	},
+	'Question1_correct': {
+		title: 'Correct !',
+		subtitle: 'Le porte du casque n\'est pas obligatoire.',
+		body: 'Effectivement, le port du casque n\'est pas obligatoire pour les vélos, bien que vivement recommandé ! Ne serait-ce que pour montrer l\'exemple aux plus jeunes. Il est revanche obligé de le porter pour les personnes qui se déplacent en vélo électrique.',
+	},
+	'Question1_incorrect': {
+		title: 'Incorrect !',
+		subtitle: 'Le porte du casque n\'est pas obligatoire.',
+		body: 'Effectivement, le port du casque n\'est pas obligatoire pour les vélos, bien que vivement recommandé ! Ne serait-ce que pour montrer l\'exemple aux plus jeunes. Il est revanche obligé de le porter pour les personnes qui se déplacent en vélo électrique.',
+	},
 });
 
 // Define the notifications used in the game
 monogatari.action ('notification').notifications ({
 	'Welcome': {
 		title: 'Bienvenue',
-		body: 'Vous jouez au jeu « Custom Ride »',
+		body: 'Vous jouez au jeu « Safe Ride »',
 		icon: './favicon.ico',
 	}
 });
@@ -135,40 +145,51 @@ monogatari.characters ({
 	},
 });
 
-let totalAmountSpent = 0;
+let capital = 100;
 // Function to upload the statBar
 function uploadStatBar() {
 	const statBar = document.getElementById("statBar");
-	const totalAmountSpentSpan = document.getElementById("totalAmountSpent")
+	const capitalSpan = document.getElementById("capital")
 	// Upload the value of the statBar
-	statBar.value = totalAmountSpent
+	statBar.value = capital
 	// Upload the display of the amount spent
-	totalAmountSpentSpan.textContent = totalAmountSpent;
+	capitalSpan.textContent = capital;
 	// Upload in the user's storage
-	monogatari.storage ().expenses = totalAmountSpent;
+	monogatari.storage ().newCapital = capital;
 };
 
 // Function to add an expense
-function addExpense(amount) {
+function revertCapital() {
 	// Add the amount of the expense to the total of expenses
-	totalAmountSpent += amount;
+	capital += 5;
 	// Upload the stat bar
 	uploadStatBar();
-	// Updating the lastExpense in the storage of the player
-	monogatari.storage ().lastExpense = amount;
-	// Function to limit the choices depending on the expenses
-	if (totalAmountSpent > 6000){
-		monogatari.storage ().overBudget = false;
-	};
 	return true;
 };
 
-// Function to substract an expense
+/*
+// OLD FUNCTION - Function to substract an expense
 function substractExpense(amount) {
 	// Add the amount of the expense to the total of expenses
-	totalAmountSpent -= amount;
+	capital -= amount;
 	// Upload the stat bar
 	uploadStatBar();
+	return true;
+};
+*/
+
+// Function to substract an expense
+function updateCapital() {
+	// Add the amount of the expense to the total of expenses
+	capital -= 5;
+	// Upload the stat bar
+	uploadStatBar();
+	// Updating the lastExpense in the storage of the player
+	monogatari.storage ().lastCapitalDeducted = 5;
+	// Function to limit the choices depending on the expenses
+	if (capital > 100){
+		monogatari.storage ().overBudget = false;
+	};
 	return true;
 };
 
@@ -207,7 +228,7 @@ monogatari.script ({
 		'centered Tu vas découvrir les gestes de sécurité à appliquer, ainsi que les r\éflexes à adopter pour une bonne conduite sur la route.',
 		'centered Marie va t\'accompagner pendant le jeu et te donnera toute sorte de conseil ou commentaire pour améliorer ton score.',
 		'centered Tu vas commencer le jeu avec un capital risque de 100%.',
-		'centered Réponds correctement au maximum de questions et tu feras baisser ton capital risque.',
+		'centered Réponds correctement au maximum de questions et tu feras baisser ton capital risque. Essaie de finir le jeu avec le pourcentage le plus faible !',
 		'jump Scene1',
 	],
 
@@ -227,35 +248,64 @@ monogatari.script ({
 		'show scene chapter1 with fadeIn',
 		'stop music intro',
 		'play music game on loop with volume 30',
+		'show scene chapter1_background with fadeIn',
 		'show character p smiling on left with fadeIn',
 		'show character m smiling on right with fadeIn',
+		'm Avoir un matériel adéquat est primordial à vélo. Que ce soit du port du casque aux accessoires comme la sonnette et le cadenas, tu vas découvrir que ces objets peuvent t\'être utile, voir même te sauver la vie.',
+		'p Je vois, je suis prêt.',
+		'm Est-il obligatoire de porter un casque à vélo ?',
 		{
 			'Choice': {
-				'Cadre en acier': {
-					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-randonnée-et-cyclotourisme/520/kit-cadre-520-disque/p/34200/?colorCode=red
-					'Text': 'A) Cadre en acier - CHF 819',
+				// Question 1
+				'Oui': {
+					'Text': 'Oui, absolument !',
+					'Class': 'choicesButtonsLeft',
+					'show message': 'Question1_incorrect',
+				},
+				'Non': {
+					'Text': 'Évidemment que non.. En plus, j\'ai l\'air ridicule avec un casque.',
+					'Class': 'choicesButtonsCenter',
+					'show message': 'Question1_incorrect',
+
+				},
+				'Autre': {
+					'Text': 'Oui, mais uniquement pour les vélos électriques.',
+					'Class': 'choicesButtonsRight',
+					'onChosen': function(){updateCapital()},
+					'onRevert': function(){revertCapital()},
+					'show message': 'Question1_correct',
+
+				},
+			},
+		},
+		'play sound cash',
+
+		'm Poursuivons.',
+		'm Les lumières sont très importantes à vélo, surtout lorsqu\'il fait obscure ou que les routes sont mal éclairées.',
+		'm Imagines que tu te trouves sur une route comme illustré ci-dessus. De quelle puissance de lumière as-tu au minimum besoin ?',
+		{
+			'Choice': {
+				// Question 2
+				'100 lumen': {
+					'Text': '100 lumen',
 					'Class': 'choicesButtonsLeft',
 					'onChosen': function(){addExpense(819)},
 					'onRevert': function(){substractExpense(819)},
 				},
-				'Cadre en aluminium': {
-					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-randonnée-et-cyclotourisme/920/kit-cadre-920/p/21995/?colorCode=tan
-					'Text': 'B) Cadre en aluminium - CHF 1399',
+				'300 lumen': {
+					'Text': '300 lumen',
 					'Class': 'choicesButtonsCenter',
 					'onChosen': function(){addExpense(1399)},
 					'onRevert': function(){substractExpense(1399)},
 				},
-				'Cadre en carbone': {
-					// https://www.trekbikes.com/ch/fr_CH/vélos/vélos-de-route/vélos-de-route-performance/domane/domane-slr/kit-cadre-domane-slr-4e-gén-/p/37303/?colorCode=black_grey
-					'Text': 'C) Cadre en carbone - CHF 5499',
+				'1000 lumen': {
+					'Text': '1000 lumen',
 					'Class': 'choicesButtonsRight',
 					'onChosen': function(){addExpense(5499)},
 					'onRevert': function(){substractExpense(5499)},
 				},
 			},
 		},
-		'play sound cash',
-		'centered Tu as depensé CHF {{lastExpense}} pour le cadre.',
 		'jump Scene3',
 	],
 

@@ -5,8 +5,8 @@ monogatari.storage ({
 	player: {
 		name: '',
 	},
-	budget: 4750,
-	expenses: 0,
-	lastExpense: 0,
+	budget: 100,
+	newCapital: 0,
+	lastCapitalDeducted: 0,
 	overBudget: true,
 });
