@@ -96,6 +96,7 @@ monogatari.assets ('images', {
 
 // Define the backgrounds for each scene.
 monogatari.assets ('scenes', {
+	'menu': 'menu.png',
 	'homepage': 'homepage.svg',
 	'street': 'street.svg',
 	'chapter1': 'chapter1.svg',
@@ -160,11 +161,21 @@ function uploadStatBar() {
 
 // Function to add an expense
 function revertCapital() {
-	// Add the amount of the expense to the total of expenses
+	// Add the amount of risk to be added to the score
 	capital += 5;
 	// Upload the stat bar
 	uploadStatBar();
 	return true;
+};
+
+// Function to substract an expense
+function updateCapital() {
+	// Add the amount of risk to be deducted to the score
+	capital -= 5;
+	// Upload the stat bar
+	uploadStatBar();
+	// Updating the last answer's score of the player in the storage
+	monogatari.storage ().lastCapitalDeducted = 5;
 };
 
 /*
@@ -175,23 +186,15 @@ function substractExpense(amount) {
 	// Upload the stat bar
 	uploadStatBar();
 	return true;
-};
-*/
 
-// Function to substract an expense
-function updateCapital() {
-	// Add the amount of the expense to the total of expenses
-	capital -= 5;
-	// Upload the stat bar
-	uploadStatBar();
-	// Updating the lastExpense in the storage of the player
-	monogatari.storage ().lastCapitalDeducted = 5;
 	// Function to limit the choices depending on the expenses
 	if (capital > 100){
 		monogatari.storage ().overBudget = false;
 	};
 	return true;
 };
+*/
+
 
 monogatari.script ({
 	// The game starts here.
@@ -224,11 +227,12 @@ monogatari.script ({
 			}
 		},
 		'centered Bonjour {{player.name}}.',
-		'centered Safe ride est un jeu de prévention sur les codes de la route à vélo et les infractions auquel tu peux être sujet lors de tes sorties.',
+		'centered Safe ride est un jeu de prévention sur les codes de la route et les infractions auquel tu peux être sujet lors de tes sorties à vélo.',
 		'centered Tu vas découvrir les gestes de sécurité à appliquer, ainsi que les r\éflexes à adopter pour une bonne conduite sur la route.',
 		'centered Marie va t\'accompagner pendant le jeu et te donnera toute sorte de conseil ou commentaire pour améliorer ton score.',
 		'centered Tu vas commencer le jeu avec un capital risque de 100%.',
 		'centered Réponds correctement au maximum de questions et tu feras baisser ton capital risque. Essaie de finir le jeu avec le pourcentage le plus faible !',
+		'stop music intro',
 		'jump Scene1',
 	],
 
@@ -236,8 +240,9 @@ monogatari.script ({
 		'show scene street with fadeIn',
 		'show character p rightSide on left with fadeIn',
 		'show character m leftSide on right with fadeIn',
-		'm Bonjour toi, j\'ai entendu dire que tu souhaitais en savoir plus sur le vélo et la sécurité à appliquer pour rouler sereinement.',
-		'm Ça tombe bien, je suis experte en la matière ! Voyons tout de suite si on doit te considérer comme un danger sur la voie publique ou si tu peux rouler en toute sûreté.',
+		'm Bonjour toi, j\'ai entendu dire que tu souhaitais en savoir plus sur le vélo et la sécurité à appliquer pour rouler en toute sérénité.',
+		'p C\'est exact. Je crois que cela ne me ferait pas de mal de revoir les bases.',
+		'm Ça tombe bien, je suis experte en la matière ! Voyons tout de suite si on doit te considérer comme un danger sur la voie publique ou si tu peux rouler en toute confiance.',
 		'show character m smiling on right',
 		'show character p front on left',
 		'jump Scene2',
@@ -245,44 +250,48 @@ monogatari.script ({
 
 
 	'Scene2': [
-		'show scene chapter1 with fadeIn',
-		'stop music intro',
+		'show scene chapter1 with fadeIn duration 10s',
+		'jump Scene3',
+	],
+	
+	'Scene3': [
 		'play music game on loop with volume 30',
-		'show scene chapter1_background with fadeIn',
+		'show scene chapter1_background with fadeIn duration 3s',
 		'show character p smiling on left with fadeIn',
 		'show character m smiling on right with fadeIn',
 		'm Avoir un matériel adéquat est primordial à vélo. Que ce soit du port du casque aux accessoires comme la sonnette et le cadenas, tu vas découvrir que ces objets peuvent t\'être utile, voir même te sauver la vie.',
-		'p Je vois, je suis prêt.',
-		'm Est-il obligatoire de porter un casque à vélo ?',
+		'p Oui, effectivement. Quels sont les objets élémentaires dans ce cas ?',
+		'm Typiquement, le casque. Selon toi, est-il obligatoire de porter un casque à vélo ? ',
 		{
 			'Choice': {
 				// Question 1
 				'Oui': {
 					'Text': 'Oui, absolument !',
-					'Class': 'choicesButtonsLeft',
+					// 'Class': 'choicesButtonsLeft',
 					'show message': 'Question1_incorrect',
 				},
 				'Non': {
 					'Text': 'Évidemment que non.. En plus, j\'ai l\'air ridicule avec un casque.',
-					'Class': 'choicesButtonsCenter',
+					// 'Class': 'choicesButtonsCenter',
 					'show message': 'Question1_incorrect',
 
 				},
 				'Autre': {
 					'Text': 'Oui, mais uniquement pour les vélos électriques.',
-					'Class': 'choicesButtonsRight',
+					// 'Class': 'choicesButtonsRight',
 					'onChosen': function(){updateCapital()},
 					'onRevert': function(){revertCapital()},
 					'show message': 'Question1_correct',
-
 				},
 			},
 		},
 		'play sound cash',
-
+		'm Le port du casque, bien que pas obligatoire, peut sauver ta vie dans beaucoup de circonstances.',
+		'm C\'est connu d\'ailleurs.. «Le style vient après la vie» !',
+		'p C\'est vrai.',
 		'm Poursuivons.',
-		'm Les lumières sont très importantes à vélo, surtout lorsqu\'il fait obscure ou que les routes sont mal éclairées.',
-		'm Imagines que tu te trouves sur une route comme illustré ci-dessus. De quelle puissance de lumière as-tu au minimum besoin ?',
+		'm Les lumières sont également très importantes à vélo, surtout lorsqu\'il fait obscure ou que les routes sont mal éclairées.',
+		'm Imagines que tu te trouves sur une route comme illustré ci-dessus. De quelle puissance de lumière as-tu au minimum besoin pour y voir assez clair en roulant ?',
 		{
 			'Choice': {
 				// Question 2
@@ -306,10 +315,10 @@ monogatari.script ({
 				},
 			},
 		},
-		'jump Scene3',
+		'jump Scene4',
 	],
 
-	'Scene3': [
+	'Scene4': [
 		'show scene chapter2 with fadeIn',
 		'show character p interested on left with fadeIn',
 		'show character m front on right with fadeIn',
@@ -355,13 +364,13 @@ monogatari.script ({
 				'Condition': function(){
 						return monogatari.storage ('overBudget');
 				},
-				'True': 'jump Scene4',
+				'True': 'jump Scene5',
 				'False': 'jump Lose',
 			}
 		},
 	],
 		
-	'Scene4': [
+	'Scene5': [
 		'show scene chapter3',
 		'show character p smiling on left with fadeIn',
 		'show character m surprised on right with fadeIn',
@@ -406,13 +415,13 @@ monogatari.script ({
 				'Condition': function(){
 					return monogatari.storage ('overBudget');
 				},
-				'True': 'jump Scene5',
+				'True': 'jump Scene6',
 				'False': 'jump Lose',
 			}
 		},
 	],
 
-	'Scene5': [
+	'Scene6': [
 		'show scene street',
 		'show character m smiling on right',
 		'show character p laughing on left',
