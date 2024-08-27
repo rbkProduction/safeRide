@@ -255,6 +255,7 @@ monogatari.script ({
 	],
 	
 	'Scene3': [
+		// Chapter 1
 		'play music game on loop with volume 30',
 		'show scene chapter1_background with fadeIn duration 3s',
 		'show character p smiling on left with fadeIn',
@@ -267,18 +268,18 @@ monogatari.script ({
 				// Question 1
 				'Oui': {
 					'Text': 'Oui, absolument !',
-					// 'Class': 'choicesButtonsLeft',
+					//'Class': 'choicesButtonsLeft',
 					'show message': 'Question1_incorrect',
 				},
 				'Non': {
 					'Text': 'Évidemment que non.. En plus, j\'ai l\'air ridicule avec un casque.',
-					// 'Class': 'choicesButtonsCenter',
+					//'Class': 'choicesButtonsCenter',
 					'show message': 'Question1_incorrect',
 
 				},
 				'Autre': {
 					'Text': 'Oui, mais uniquement pour les vélos électriques.',
-					// 'Class': 'choicesButtonsRight',
+					//'Class': 'choicesButtonsRight',
 					'onChosen': function(){updateCapital()},
 					'onRevert': function(){revertCapital()},
 					'show message': 'Question1_correct',
@@ -297,21 +298,17 @@ monogatari.script ({
 				// Question 2
 				'100 lumen': {
 					'Text': '100 lumen',
-					'Class': 'choicesButtonsLeft',
-					'onChosen': function(){addExpense(819)},
-					'onRevert': function(){substractExpense(819)},
+					//'Class': 'choicesButtonsLeft',
 				},
 				'300 lumen': {
 					'Text': '300 lumen',
-					'Class': 'choicesButtonsCenter',
-					'onChosen': function(){addExpense(1399)},
-					'onRevert': function(){substractExpense(1399)},
+					//'Class': 'choicesButtonsCenter',
+					'onChosen': function(){updateCapital()},
+					'onRevert': function(){revertCapital()},
 				},
 				'1000 lumen': {
 					'Text': '1000 lumen',
-					'Class': 'choicesButtonsRight',
-					'onChosen': function(){addExpense(5499)},
-					'onRevert': function(){substractExpense(5499)},
+					//'Class': 'choicesButtonsRight',
 				},
 			},
 		},
@@ -319,121 +316,30 @@ monogatari.script ({
 	],
 
 	'Scene4': [
-		'show scene chapter2 with fadeIn',
-		'show character p interested on left with fadeIn',
-		'show character m front on right with fadeIn',
-		{
-			'Choice': {
-				'cintreBMC': {
-					// https://bmc-switzerland.com/fr/collections/components/products/handlebar-ics-aero-bike-components-bmc-22-10801-005
-					'Text': 'A) Cintre BMC - CHF 349',
-					'Class': 'choicesButtonsLeft',
-					'Clickable': function(){
-						return monogatari.storage().overBudget
-					},
-					'onChosen': function(){addExpense(349)},
-					'onRevert': function(){substractExpense(349)},
-				},
-				'cintreBontrager': {
-					// https://www.trekbikes.com/ch/fr_CH/equipement/composants-pour-vélo/cintres-de-vélo/cintres-de-vélos-route/cintre-route-bontrager-pro-vr-c/p/32645/?colorCode=black
-					'Text': 'B) Cintre Bontrager - CHF 259',
-					'Class': 'choicesButtonsRight',
-					'Clickable': function(){
-						return monogatari.storage().overBudget
-					},
-					'onChosen': function(){addExpense(259)},
-					'onRevert': function(){substractExpense(259)},
-				},
-				'cintreSyncros': {
-					// https://www.syncros.com/ch/fr/product/syncros-creston-1-5-compact-handlebar
-					'Text': 'C) Cintre Syncros - CHF 76.99',
-					'Class': 'choicesButtonsCenter',
-					'Clickable': function(){
-						return monogatari.storage().overBudget
-					},
-					'onChosen': function(){addExpense(76,99)},
-					'onRevert': function(){substractExpense(76,99)},
-				},
-			},
-		},
-		'play sound cash',
-		'centered Tu as depensé CHF {{lastExpense}} pour le cintre.',
-		'show character p surprised on left',
-		{
-			'Conditional': {
-				'Condition': function(){
-						return monogatari.storage ('overBudget');
-				},
-				'True': 'jump Scene5',
-				'False': 'jump Lose',
-			}
-		},
-	],
-		
-	'Scene5': [
-		'show scene chapter3',
-		'show character p smiling on left with fadeIn',
-		'show character m surprised on right with fadeIn',
-		{
-			'Choice': {
-				'Les freins à patins - Shimano Dura-Ace': {
-					// https://bike.shimano.com/fr-FR/product/component/dura-ace-r9200/BR-R9200.html
-					'Text': 'A) Les freins à patins Shimano Dura-Ace - CHF 132',
-					'Class': 'choicesButtonsLeft',
-					'Clickable': function(){
-						return monogatari.storage().overBudget
-					},
-					'onChosen': function(){addExpense(132)},
-					'onRevert': function(){substractExpense(132)},
-				},
-				'Les freins à patins - SRAM Force': {
-					// https://www.sram.com/en/sram/models/rb-frc-d1
-					'Text': 'B) Les freins à patins SRAM Force - CHF 85',
-					'Class': 'choicesButtonsCenter',
-					'Clickable': function(){
-						return monogatari.storage().overBudget
-					},
-					'onChosen': function(){addExpense(85)},
-					'onRevert': function(){substractExpense(85)},
-				},
-				'Les freins à disque': {
-					// https://bike.shimano.com/fr-FR/product/component/dura-ace-r9200/BR-R9270.html
-					'Text': 'C) Les freins à disque Shimano Dura-Ace - CHF 114 + CHF 61.90',
-					'Class': 'choicesButtonsRight',
-					'Clickable': function(){
-						return monogatari.storage().overBudget
-					},
-					'onChosen': function(){addExpense(175,9)},
-					'onRevert': function(){substractExpense(175,9)},
-				}
-			}
-		},
-		'play sound cash',
-		'centered Tu as depensé CHF {{lastExpense}} pour les freins.',
-		{
-			'Conditional': {
-				'Condition': function(){
-					return monogatari.storage ('overBudget');
-				},
-				'True': 'jump Scene6',
-				'False': 'jump Lose',
-			}
-		},
+		'show scene chapter2 with fadeIn duration 10s',
+		'jump Scene5',
 	],
 
-	'Scene6': [
-		'show scene street',
-		'show character m smiling on right',
-		'show character p laughing on left',
-		'm Félicitations, nous y sommes arrivés ! Vous avez monté votre vélo de A à Z.',
-		'stop music game',
-		'm Passons à la caisse pendant que le méchanicien commence à travailler sur votre vélo.',
-		'play sound tools',
-		'show scene black with fadeIn',
-		'centered Le méchanicien assemble ton vélo...',
-		'jump Win',
+	'Scene5': [
+		// Chapter 2
+		'show scene chapter2_background with fadeIn duration 3s',
+		'show character p interested on left with fadeIn',
+		'show character m front on right with fadeIn',
+		'jump Scene6',
 	],
 	
+	'Scene6': [
+		'show scene chapter3 with fadeIn duration 10s',
+		'jump Scene7',
+	],
+
+	'Scene7': [
+		// Chapter 3
+		'show scene chapter3_background',
+		'show character p smiling on left with fadeIn',
+		'show character m surprised on right with fadeIn',
+		'jump Scene8',
+	],	
 
 	'Win': [
 		'stop music game',
